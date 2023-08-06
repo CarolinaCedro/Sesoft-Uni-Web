@@ -1,4 +1,4 @@
 # SesoftUni
 ## Em construção
 
-###   <a href="https://sesoft-uni-web.vercel.app/home">Ir para site</a>
+###   <a href="https://sesoft-uni-web.vercel.app">Ir para site</a>
