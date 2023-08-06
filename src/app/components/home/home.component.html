@@ -1,0 +1,78 @@
+<section>
+  <div class="columConfig">
+    <div class="profile-pic">
+      <img src="https://angular-material.fusetheme.com/assets/images/avatars/brian-hughes.jpg">
+    </div>
+
+    <div class="operations-profile">
+      <a class="item-menu" >Feed</a>
+      <a class="item-menu">Explore</a>
+      <a class="item-menu">Perfil</a>
+      <a class="item-menu">Notificações</a>
+      <a class="item-menu">Configurações</a>
+    </div>
+    <div class="exit-container">
+      <a [routerLink]="['']">
+<!--        <i class="fa-solid fa-user"></i>   -->
+        <p>Sair</p>
+      </a>
+    </div>
+  </div>
+  <div class="columFeed">
+    <div class="header-home">
+      <h4>Home</h4>
+    </div>
+    <div class="btn-container">
+      <app-btn-global [titleButton]="'Post'" [buttonWidth]="'15%'" (click)="openDialog()"
+                      [buttonPadding]="'.7rem 1rem'"></app-btn-global>
+    </div>
+
+    <div class="card-feed">
+      Card
+    </div>
+    <div class="card-feed">
+      Card
+    </div>
+    <div class="card-feed">
+      Card
+    </div>
+    <div class="card-feed">
+      Card
+    </div>
+    <div class="card-feed">
+      Card
+    </div>
+    <div class="card-feed">
+      Card
+    </div>
+    <div class="card-feed">
+      Card
+    </div>
+    <div class="card-feed">
+      Card
+    </div>
+    <div class="card-feed">
+      Card
+    </div>
+  </div>
+  <div class="columExplorer">
+    <h4>Explore nossa faculdade</h4>
+    <div class="links-container">
+      <ul>
+        <li>
+          <a href="https://www.unirv.edu.br/index.php" target="_blank">Universidade de Rio Verde</a>
+        </li>
+
+        <li>
+          <a href="https://www.unirv.edu.br/vestibular.php" target="_blank">Vestibular 2023</a>
+        </li>
+
+        <li>
+          <a href="https://www.unirv.edu.br/vestibular.php" target="_blank">Calendário Acadêmico</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</section>

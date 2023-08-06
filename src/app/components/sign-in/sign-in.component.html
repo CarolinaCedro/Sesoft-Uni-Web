@@ -1,0 +1,39 @@
+<section>
+  <div class="content">
+    <div class="container-left">
+      <div class="container-welcomes">
+        <div class="logo-container">
+          <img src="assets/logo-removedBg.png">
+        </div>
+        <h1>Bem vindo a SesoftUni</h1>
+        <p>Conecte-se, compartilhe e explore uma era de interação sem precedentes na Faculdade de Engenharia de Software(UniRv).</p>
+      </div>
+    </div>
+    <div class="container-login">
+      <div class="container-rigth">
+        <div class="container-title-login">
+          <img src="assets/logo-fasoft.png">
+          <h2>Login</h2>
+        </div>
+        <form class="form-container">
+          <p>
+            <mat-form-field  appearance="outline">
+              <mat-label>E-mail</mat-label>
+              <input matInput placeholder="ana.c.s.cedro@academico.unirv.edu.br">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input matInput placeholder="">
+            </mat-form-field>
+          </p>
+
+          <app-btn-global [titleButton]="'Entrar'" (click)="autentication()"></app-btn-global>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</section>
