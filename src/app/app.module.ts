@@ -15,6 +15,10 @@ import {ModalPostComponent} from './components/modal-post/modal-post.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {SignUpComponent} from './components/sign-up/sign-up.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     SignInComponent,
     BtnGlobalComponent,
     HomeComponent,
-    ModalPostComponent
+    ModalPostComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,10 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     RouterModule,
     MatDialogModule,
     MatButtonModule,
-    FontAwesomeModule
+    MatSnackBarModule,
+    HttpClientModule,
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

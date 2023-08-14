@@ -6,31 +6,80 @@
           <img src="assets/logo-removedBg.png">
         </div>
         <h1>Bem vindo a SesoftUni</h1>
-        <p>Conecte-se, compartilhe e explore uma era de interação sem precedentes na Faculdade de Engenharia de Software(UniRv).</p>
+        <p>Conecte-se, compartilhe e explore uma era de interação sem precedentes na Faculdade de Engenharia de
+          Software(UniRv).</p>
       </div>
     </div>
-    <div class="container-login">
+    <div class="container-login" *ngIf="viewPage">
       <div class="container-rigth">
         <div class="container-title-login">
           <img src="assets/logo-fasoft.png">
           <h2>Login</h2>
         </div>
+        <form class="form-container" [formGroup]="form">
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>E-mail</mat-label>
+              <input matInput placeholder="" formControlName="email">
+            </mat-form-field>
+          </p>
+          <p class="position-container">
+            <mat-form-field appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input matInput placeholder="" formControlName="password">
+            </mat-form-field>
+          </p>
+          <app-btn-global [titleButton]="'Entrar'" (click)="autentication(form)"></app-btn-global>
+        </form>
+        <div class="container-error" *ngIf="errorLogin">
+          <div class="login-error">
+            <small>Atenção usuário ou senha incorretos</small>
+          </div>
+        </div>
+
+        <small (click)="changeState()">
+          <a>Criar conta</a>
+        </small>
+      </div>
+
+    </div>
+
+    <div class="container-login" *ngIf="!viewPage">
+      <div class="container-rigth">
+        <div class="container-title-login">
+          <img src="assets/logo-fasoft.png">
+          <h2>Cadastre-se</h2>
+        </div>
         <form class="form-container">
           <p>
-            <mat-form-field  appearance="outline">
+            <mat-form-field appearance="outline">
+              <mat-label>Display Name</mat-label>
+              <input matInput placeholder="">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput placeholder="">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
               <mat-label>E-mail</mat-label>
               <input matInput placeholder="ana.c.s.cedro@academico.unirv.edu.br">
             </mat-form-field>
           </p>
-          <p>
+          <p class="position-container">
             <mat-form-field appearance="outline">
               <mat-label>Senha</mat-label>
               <input matInput placeholder="">
             </mat-form-field>
           </p>
-
-          <app-btn-global [titleButton]="'Entrar'" (click)="autentication()"></app-btn-global>
+          <app-btn-global [titleButton]="'Cadastrar'" (click)="registerUser()"></app-btn-global>
         </form>
+        <small (click)="changeState()">
+          <a>Login</a>
+        </small>
       </div>
 
     </div>

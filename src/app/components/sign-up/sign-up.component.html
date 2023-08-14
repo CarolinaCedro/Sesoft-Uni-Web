@@ -1,0 +1,27 @@
+<div class="container-login">
+  <div class="container-rigth">
+    <div class="container-title-login">
+      <img src="assets/logo-fasoft.png">
+      <h2>Cadastre-se</h2>
+    </div>
+    <form class="form-container">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="ana.c.s.cedro@academico.unirv.edu.br">
+        </mat-form-field>
+      </p>
+      <p class="position-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+      </p>
+      <app-btn-global [titleButton]="'Entrar'" (click)="autentication()"></app-btn-global>
+    </form>
+    <small [routerLink]="['/sign-up']">
+      <a>Login</a>
+    </small>
+  </div>
+
+</div>
