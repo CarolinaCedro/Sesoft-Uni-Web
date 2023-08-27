@@ -155,4 +155,19 @@ section {
     justify-content: center;
   }
 
+  .mat-spiner-position {
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mat-spiner-position mat-spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 10px;
+  }
+
+
 }

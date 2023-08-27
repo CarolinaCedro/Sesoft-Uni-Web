@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterLink} from "@angular/router";
+import {Router} from "@angular/router";
 import {SesoftService} from "../../sesoft.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -18,6 +18,7 @@ export class SignInComponent implements OnInit {
 
   form: FormGroup
   errorLogin!: boolean;
+  isValidationInProgress = false;
 
 
   public viewPage!: boolean
@@ -68,17 +69,32 @@ export class SignInComponent implements OnInit {
   }
 
   autentication(form: FormGroup) {
-    this.service.login(form.value).subscribe(
-      (response) => {
-        const token = response.text; // Armazena o token JWT
-        this.errorLogin = false
-        console.log(token)
-        // Armazene o token em localStorage ou sessionStorage
-      },
-      (error) => {
-        console.log("Erro ao fazer login:", error);
-        this.errorLogin = true
-      }
-    );
+    if (form.valid) {
+      this.isValidationInProgress = true;
+
+      this.service.login(form.value).subscribe(
+        (response) => {
+          console.log("aqui a response", response)
+          const token = response.token; // Armazena o token JWT
+          console.log("valor recuperado do backendo", token)
+
+          // Armazene o token em localStorage ou sessionStorage
+          localStorage.removeItem('token'); //remove primeiro o antigo
+          localStorage.setItem('token', token); // Use localStorage para armazenar permanentemente
+          // sessionStorage.setItem('token', token); // Use sessionStorage para armazenar temporariamente
+
+          this.isValidationInProgress = false;
+          this.errorLogin = false;
+          console.log(token);
+
+        },
+        (error) => {
+          console.log("Erro ao fazer login:", error);
+          this.isValidationInProgress = false;
+          this.errorLogin = true;
+        }
+      );
+    }
   }
+
 }

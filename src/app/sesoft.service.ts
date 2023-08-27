@@ -22,13 +22,13 @@ export class SesoftService {
   }
 
   login(payload: any): Observable<any> {
-    return this.http.post(this.url + "auth/signin", payload, {responseType: 'text'}).pipe(
-      map((res) => {
-        localStorage.removeItem('token')
-        localStorage.setItem('token', res);
+    return this.http.post(this.url + "auth/signin", payload).pipe(
+      map((res: any) => {
+        const token = res.token; // Correto, pois o token está na propriedade 'token' do objeto
+        localStorage.setItem('token', token);
         console.log("Usuário logado com sucesso");
-        this.route.navigate(['home'])
-        return res; // Retornar a string do token
+        this.route.navigate(['home']);
+        return res;
       }),
       catchError((error) => {
         console.log('Erro ao fazer login:', error);
@@ -36,4 +36,5 @@ export class SesoftService {
       })
     );
   }
+
 }

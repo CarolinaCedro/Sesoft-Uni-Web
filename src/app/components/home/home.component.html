@@ -5,7 +5,7 @@
     </div>
 
     <div class="operations-profile">
-      <a class="item-menu" >Feed</a>
+      <a class="item-menu">Feed</a>
       <a class="item-menu">Explore</a>
       <a class="item-menu">Perfil</a>
       <a class="item-menu">Notificações</a>
@@ -13,7 +13,7 @@
     </div>
     <div class="exit-container">
       <a [routerLink]="['']">
-<!--        <i class="fa-solid fa-user"></i>   -->
+        <i class="fa-solid fa-arrow-left"></i>
         <p>Sair</p>
       </a>
     </div>
@@ -26,34 +26,14 @@
       <app-btn-global [titleButton]="'Post'" [buttonWidth]="'15%'" (click)="openDialog()"
                       [buttonPadding]="'.7rem 1rem'"></app-btn-global>
     </div>
+    <div class="card-feed">
+      <div class="title-post">{{post.user?.username}}</div>
+      <div>
+        {{post.content}}
+      </div>
 
-    <div class="card-feed">
-      Card
     </div>
-    <div class="card-feed">
-      Card
-    </div>
-    <div class="card-feed">
-      Card
-    </div>
-    <div class="card-feed">
-      Card
-    </div>
-    <div class="card-feed">
-      Card
-    </div>
-    <div class="card-feed">
-      Card
-    </div>
-    <div class="card-feed">
-      Card
-    </div>
-    <div class="card-feed">
-      Card
-    </div>
-    <div class="card-feed">
-      Card
-    </div>
+
   </div>
   <div class="columExplorer">
     <h4>Explore nossa faculdade</h4>

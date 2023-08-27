@@ -20,7 +20,7 @@
           <p>
             <mat-form-field appearance="outline">
               <mat-label>E-mail</mat-label>
-              <input matInput placeholder="" formControlName="email">
+              <input matInput type="email" placeholder="" formControlName="email">
             </mat-form-field>
           </p>
           <p class="position-container">
@@ -29,7 +29,10 @@
               <input matInput placeholder="" formControlName="password">
             </mat-form-field>
           </p>
-          <app-btn-global [titleButton]="'Entrar'" (click)="autentication(form)"></app-btn-global>
+          <app-btn-global *ngIf="!isValidationInProgress" [titleButton]="'Entrar'" (click)="autentication(form)"></app-btn-global>
+          <div class="mat-spiner-position" *ngIf="isValidationInProgress">
+            <mat-spinner class="mat-primary" strokeWidth="5" [diameter]="40"></mat-spinner>
+          </div>
         </form>
         <div class="container-error" *ngIf="errorLogin">
           <div class="login-error">

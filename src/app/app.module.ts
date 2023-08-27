@@ -19,6 +19,7 @@ import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -29,21 +30,22 @@ import {ReactiveFormsModule} from "@angular/forms";
     ModalPostComponent,
     SignUpComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatInputModule,
-    MatIconModule,
-    RouterModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    HttpClientModule,
-    FontAwesomeModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSlideToggleModule,
+        MatInputModule,
+        MatIconModule,
+        RouterModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        HttpClientModule,
+        FontAwesomeModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
