@@ -16,7 +16,7 @@ export class PostService {
   }
 
   getPostById(id: string): Observable<PostResponseModel> {
-    const token = getFromLocalStorage('token');
+    const token = getFromLocalStorage('token_%sesoftuni%');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });

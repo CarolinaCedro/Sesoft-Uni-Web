@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {ModalPostComponent} from "../modal-post/modal-post.component";
-import {PostService} from "../../post.service";
-import {PostResponseModel} from "../../interfaces/post-response.models";
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { ModalPostComponent } from "../modal-post/modal-post.component";
+import { PostService } from "../../post.service";
+import { PostResponseModel } from "../../interfaces/post-response.models";
+import { removeToLocalStorage } from 'src/utils/local-storage.util';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,10 @@ export class HomeComponent implements OnInit {
         this.post = res
       }
     )
+  }
 
+  protected singOut() {
+    removeToLocalStorage('token_%sesoftuni%');
   }
 
 

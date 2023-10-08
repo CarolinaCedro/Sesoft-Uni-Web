@@ -5,8 +5,15 @@ import { Router } from "@angular/router";
 import { saveToLocalStorage } from 'src/utils/local-storage.util';
 import { environment } from 'src/environments/environment';
 
-export type LoginProps = {
+export type LoginResponseProps = {
   token: string;
+}
+
+export type LoginRequestProps = {
+  displayName: string;
+  username: string;
+  email: string;
+  password: string;
 }
 
 @Injectable({
@@ -23,10 +30,10 @@ export class SesoftService {
     );
   }
 
-  login(payload: any): Observable<LoginProps> {
-    return this.http.post<LoginProps>(`${environment.apiUrl}auth/signin`, payload).pipe(
-      map(({ token }: LoginProps) => {
-        saveToLocalStorage('token', token);
+  login(payload: LoginRequestProps): Observable<LoginResponseProps> {
+    return this.http.post<LoginResponseProps>(`${environment.apiUrl}auth/signin`, payload).pipe(
+      map(({ token }: LoginResponseProps) => {
+        saveToLocalStorage('token_%sesoftuni%', token);
         this.route.navigate(['home']);
         return { token };
       }),
