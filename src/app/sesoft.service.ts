@@ -1,40 +1,39 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {catchError, map, Observable, throwError} from "rxjs";
-import {Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { catchError, map, Observable, throwError } from "rxjs";
+import { Router } from "@angular/router";
+import { saveToLocalStorage } from 'src/utils/local-storage.util';
+import { environment } from 'src/environments/environment';
+
+export type LoginProps = {
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class SesoftService {
-
-
   constructor(private http: HttpClient, private route: Router) {
   }
 
-  url: string = "https://sesoft-uni-backend-development.up.railway.app/"
-
   signUp(body: any): Observable<any> {
-    return this.http.post(this.url + "auth/signup", body).pipe(
+    return this.http.post(`${environment.apiUrl}auth/signup`, body).pipe(
       map(response => response),
       catchError(error => throwError(error))
     );
   }
 
-  login(payload: any): Observable<any> {
-    return this.http.post(this.url + "auth/signin", payload).pipe(
-      map((res: any) => {
-        const token = res.token; // Correto, pois o token está na propriedade 'token' do objeto
-        localStorage.setItem('token', token);
-        console.log("Usuário logado com sucesso");
+  login(payload: any): Observable<LoginProps> {
+    return this.http.post<LoginProps>(`${environment.apiUrl}auth/signin`, payload).pipe(
+      map(({ token }: LoginProps) => {
+        saveToLocalStorage('token', token);
         this.route.navigate(['home']);
-        return res;
+        return { token };
       }),
       catchError((error) => {
-        console.log('Erro ao fazer login:', error);
+        console.error('Erro ao fazer login:', error);
         throw error;
       })
     );
   }
-
 }

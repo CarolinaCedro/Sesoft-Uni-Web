@@ -20,6 +20,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     BtnGlobalComponent,
     HomeComponent,
     ModalPostComponent,
-    SignUpComponent
+    SignUpComponent,
+    RegistrationFormComponent
   ],
     imports: [
         BrowserModule,

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {SesoftService} from "../../sesoft.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { SesoftService } from "../../sesoft.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-sign-in',
@@ -10,12 +10,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-
-  //  "displayName": "string",
-  //   "username": "string",
-  //   "email": "string",
-  //   "password": "string"
-
   form: FormGroup
   errorLogin!: boolean;
   isValidationInProgress = false;
@@ -57,10 +51,10 @@ export class SignInComponent implements OnInit {
 
   changeState() {
     if (this.viewPage) {
-      this.viewPage = false;
-    } else {
-      this.viewPage = true
+      return this.viewPage = false;
     }
+
+    return this.viewPage = true
   }
 
 
@@ -73,22 +67,11 @@ export class SignInComponent implements OnInit {
       this.isValidationInProgress = true;
 
       this.service.login(form.value).subscribe(
-        (response) => {
-          console.log("aqui a response", response)
-          const token = response.token; // Armazena o token JWT
-          console.log("valor recuperado do backendo", token)
-
-          // Armazene o token em localStorage ou sessionStorage
-          localStorage.removeItem('token'); //remove primeiro o antigo
-          localStorage.setItem('token', token); // Use localStorage para armazenar permanentemente
-          // sessionStorage.setItem('token', token); // Use sessionStorage para armazenar temporariamente
-
+        () => {
           this.isValidationInProgress = false;
           this.errorLogin = false;
-          console.log(token);
-
         },
-        (error) => {
+        (error: any) => {
           console.log("Erro ao fazer login:", error);
           this.isValidationInProgress = false;
           this.errorLogin = true;

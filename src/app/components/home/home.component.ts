@@ -19,9 +19,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    console.log("aqui pegando o item ", localStorage.getItem('token'))
-
     this.service.getPostById("f8b3a4f3-bb64-407d-8a02-d27bcd8911f7").subscribe(
       (res) => {
         this.post = res
