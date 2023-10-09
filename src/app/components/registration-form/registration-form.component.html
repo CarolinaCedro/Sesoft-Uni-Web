@@ -1,0 +1,30 @@
+<form [formGroup]="form" class="form-container">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="displayName" placeholder="Digite o seu usuário">
+      <mat-error *ngIf="form?.get('nome')?.hasError('required')">
+        O campo Nome é obrigatório.
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Usuário</mat-label>
+      <input matInput formControlName="username" placeholder="Digite o seu nome">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" placeholder="Digite o seu E-mail">
+    </mat-form-field>
+  </p>
+  <p class="position-container">
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput formControlName="password" placeholder="Digite o sua senha">
+    </mat-form-field>
+  </p>
+  <app-btn-global [titleButton]="'Cadastrar'" (click)="registerUser()"></app-btn-global>
+</form>
