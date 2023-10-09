@@ -21,6 +21,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {RegistrationFormComponent} from './components/registration-form/registration-form.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     BtnGlobalComponent,
     HomeComponent,
     ModalPostComponent,
-    SignUpComponent
+    SignUpComponent,
+    RegistrationFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,11 @@
+import {PostNotificationService} from "../listeners/post-notification-service.service";
+
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ModalPostComponent} from "../modal-post/modal-post.component";
 import {PostService} from "../../post.service";
-import {PostNotificationService} from "../listeners/post-notification-service.service";
+import {removeToLocalStorage} from 'src/utils/local-storage.util';
+
 
 @Component({
   selector: 'app-home',
@@ -23,26 +26,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    console.log("aqui pegando o item ", localStorage.getItem('token'))
-
     this.service.getAllPosts(0, 100).subscribe(
-      (res) => {
-        this.posts = res.result;
-      }
-    )
+      res => {
+        console.log(res)
+        this.posts = res
+      })
+  }
 
-    this.postNotificationService.postCreated$.subscribe(() => {
-      // Atualiza a lista de postagens
-      this.service.getAllPosts(0, 100).subscribe(
-        (res) => {
-          this.posts = res.result;
-        }
-      );
-    });
 
-    console.log("aqui esta merda", this.posts)
-
+  singOut() {
+    removeToLocalStorage('token_%sesoftuni%');
   }
 
 
