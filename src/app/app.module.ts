@@ -20,6 +20,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -30,22 +31,23 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     ModalPostComponent,
     SignUpComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSlideToggleModule,
-        MatInputModule,
-        MatIconModule,
-        RouterModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        HttpClientModule,
-        FontAwesomeModule,
-        ReactiveFormsModule,
-        MatProgressSpinnerModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatInputModule,
+    MatIconModule,
+    RouterModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    HttpClientModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

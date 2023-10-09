@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ModalPostComponent} from "../modal-post/modal-post.component";
 import {PostService} from "../../post.service";
-import {PostResponseModel} from "../../interfaces/post-response.models";
+import {PostNotificationService} from "../listeners/post-notification-service.service";
 
 @Component({
   selector: 'app-home',
@@ -12,21 +12,36 @@ import {PostResponseModel} from "../../interfaces/post-response.models";
 export class HomeComponent implements OnInit {
 
   // posts: Array<PostResponseModel> = []
-  post: PostResponseModel = {}
+  posts: any = []
+  likes!: number;
+  coments!: number;
 
 
-  constructor(public dialog: MatDialog, private service: PostService) {
+  constructor(public dialog: MatDialog, private service: PostService,
+              private postNotificationService: PostNotificationService
+  ) {
   }
 
   ngOnInit(): void {
 
     console.log("aqui pegando o item ", localStorage.getItem('token'))
 
-    this.service.getPostById("f8b3a4f3-bb64-407d-8a02-d27bcd8911f7").subscribe(
+    this.service.getAllPosts(0, 100).subscribe(
       (res) => {
-        this.post = res
+        this.posts = res.result;
       }
     )
+
+    this.postNotificationService.postCreated$.subscribe(() => {
+      // Atualiza a lista de postagens
+      this.service.getAllPosts(0, 100).subscribe(
+        (res) => {
+          this.posts = res.result;
+        }
+      );
+    });
+
+    console.log("aqui esta merda", this.posts)
 
   }
 
@@ -36,4 +51,13 @@ export class HomeComponent implements OnInit {
   }
 
 
+  handleLike() {
+    this.likes = +1
+    console.log("clicando")
+  }
+
+  handleComents() {
+    this.coments = +1
+    console.log("comentando")
+  }
 }
