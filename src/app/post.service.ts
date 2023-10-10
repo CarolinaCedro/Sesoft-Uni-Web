@@ -60,8 +60,8 @@ export class PostService {
 
 
   getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-
+    const token = getFromLocalStorage('token_%sesoftuni%');
+    console.log("aqui o token sendo pego", token)
     if (token) {
       return new HttpHeaders({
         'Authorization': 'Bearer ' + token,

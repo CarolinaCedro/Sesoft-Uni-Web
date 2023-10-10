@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllPosts(0, 100).subscribe(
       res => {
-        console.log(res)
-        this.posts = res
+        console.log("teste", res)
+        this.posts = res?.result
       })
   }
 
