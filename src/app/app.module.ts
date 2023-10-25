@@ -22,6 +22,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RegistrationFormComponent} from './components/registration-form/registration-form.component';
+import { ExplorerComponent } from './components/explorer/explorer.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { FeedComponent } from './components/home/feed/feed/feed.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -32,25 +38,31 @@ import {RegistrationFormComponent} from './components/registration-form/registra
     HomeComponent,
     ModalPostComponent,
     SignUpComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    ExplorerComponent,
+    ProfileComponent,
+    NotificationComponent,
+    SettingsComponent,
+    FeedComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatInputModule,
-    MatIconModule,
-    RouterModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    HttpClientModule,
-    FontAwesomeModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    MatTooltipModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSlideToggleModule,
+        MatInputModule,
+        MatIconModule,
+        RouterModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        HttpClientModule,
+        FontAwesomeModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        MatTooltipModule,
+        MatCardModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

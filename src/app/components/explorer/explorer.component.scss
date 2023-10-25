@@ -1,0 +1,31 @@
+.explorer-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #F1F5F9;
+  //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.event {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+h1{
+  color: #3270B4;
+}
+
+.event h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #20456d;
+}
+
+.event p {
+  font-size: 16px;
+  margin: 5px 0;
+}

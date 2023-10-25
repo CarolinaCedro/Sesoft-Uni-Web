@@ -5,11 +5,11 @@
     </div>
 
     <div class="operations-profile">
-      <a class="item-menu">Feed</a>
-      <a class="item-menu">Explore</a>
-      <a class="item-menu">Perfil</a>
-      <a class="item-menu">Notificações</a>
-      <a class="item-menu">Configurações</a>
+      <a routerLink="/home/feed" routerLinkActive="active-link" >Feed</a>
+      <a routerLink="/home/profile" routerLinkActive="active-link" >Perfil</a>
+      <a routerLink="/home/explorer" routerLinkActive="active-link" >Explore</a>
+      <a routerLink="/home/notification" routerLinkActive="active-link"  >Notificações</a>
+      <a routerLink="/home/settings" routerLinkActive="active-link" >Configurações</a>
     </div>
     <div class="exit-container">
       <a (click)="singOut()" [routerLink]="['']">
@@ -19,34 +19,19 @@
     </div>
   </div>
   <div class="columFeed">
-    <div class="header-home">
-      <h4>Home</h4>
-    </div>
-    <div class="btn-container">
-      <app-btn-global [titleButton]="'Post'" [buttonWidth]="'15%'" (click)="openDialog()"
-                      [buttonPadding]="'.7rem 1rem'"></app-btn-global>
-    </div>
-    <div class="card-feed" *ngFor="let post of posts">
-      <div class="title-post">{{post.user?.username}}</div>
-      <div>
-        {{post.content}}
-      </div>
-      <div class="btn-like-container">
-        <div class="action">
-          <i class="fa-solid fa-comment"  (click)="handleComents()"></i>
-          <small> {{coments}}</small>
-        </div>
 
-        <div class="action">
-          <i class="fa-solid fa-heart" (click)="handleLike()"></i>
-          <small> {{likes}}</small>
-        </div>
-
-        <!--        <a mat-mini-fab matTooltip="Link" routerLink="." aria-label="Example mini fab with a heart icon">-->
-        <!--          <mat-icon>favorite</mat-icon>-->
-        <!--        </a>-->
+      <div class="header-home">
+        <h4>Home</h4>
       </div>
+      <div class="btn-container">
+        <app-btn-global [titleButton]="'Post'" [buttonWidth]="'15%'" (click)="openDialog()"
+                        [buttonPadding]="'.7rem 1rem'"></app-btn-global>
+      </div>
+    <div class="teste">
+      <router-outlet></router-outlet>
+
     </div>
+
 
   </div>
   <div class="columExplorer">

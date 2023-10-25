@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { catchError, map, Observable, throwError } from "rxjs";
-import { Router } from "@angular/router";
-import { saveToLocalStorage } from 'src/utils/local-storage.util';
-import { environment } from 'src/environments/environment';
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {catchError, map, Observable, of, throwError} from "rxjs";
+import {Router} from "@angular/router";
+import {saveToLocalStorage} from 'src/utils/local-storage.util';
+import {environment} from 'src/environments/environment';
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 export type LoginResponseProps = {
   token: string;
@@ -20,6 +21,7 @@ export type LoginRequestProps = {
   providedIn: 'root'
 })
 export class SesoftService {
+  private TOKEN: string = "token_%sesoftuni%";
   constructor(private http: HttpClient, private route: Router) {
   }
 
@@ -42,5 +44,34 @@ export class SesoftService {
         throw error;
       })
     );
+  }
+
+  public logout(): Observable<boolean> {
+    try {
+      localStorage.removeItem(this.TOKEN);
+      this.route.navigate(['login']);
+      return of(true); // Retorna um observable com valor true para indicar sucesso
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error);
+      return of(false); // Retorna um observable com valor false para indicar erro
+    }
+  }
+
+
+  get isLoged(): boolean {
+    return this.containsToken();
+  }
+
+  public containsToken(): boolean {
+    return localStorage.getItem(this.TOKEN) == null ? false : true;
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem(this.TOKEN);
+
+    if (!token) return false;
+
+    const jwtHelper = new JwtHelperService();
+    return !jwtHelper.isTokenExpired(token);
   }
 }

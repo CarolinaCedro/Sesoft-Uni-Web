@@ -1,0 +1,19 @@
+.settings-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.settings-item {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.settings-item input {
+  margin-left: 10px;
+}
