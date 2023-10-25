@@ -1,10 +1,10 @@
-import {PostNotificationService} from "../listeners/post-notification-service.service";
+import { PostNotificationService } from "../listeners/post-notification-service.service";
 
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {ModalPostComponent} from "../modal-post/modal-post.component";
-import {PostService} from "../../post.service";
-import {removeToLocalStorage} from 'src/utils/local-storage.util';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { ModalPostComponent } from "../modal-post/modal-post.component";
+import { PostService } from "../../post.service";
+import { removeToLocalStorage } from 'src/utils/local-storage.util';
 
 
 @Component({
@@ -21,14 +21,13 @@ export class HomeComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog, private service: PostService,
-              private postNotificationService: PostNotificationService
+    private postNotificationService: PostNotificationService
   ) {
   }
 
   ngOnInit(): void {
     this.service.getAllPosts(0, 100).subscribe(
       res => {
-        console.log("teste", res)
         this.posts = res?.result
       })
   }
