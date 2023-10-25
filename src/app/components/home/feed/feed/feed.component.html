@@ -4,14 +4,14 @@
     {{post.content}}
   </div>
   <div class="btn-like-container">
-    <div class="action">
+    <!-- <div class="action">
       <i class="fa-solid fa-comment" (click)="handleComents()"></i>
-      <small> {{coments}}</small>
-    </div>
+      <small>{{coments}}</small>
+    </div> -->
 
     <div class="action">
-      <i class="fa-solid fa-heart" (click)="handleLike()"></i>
-      <small> {{likes}}</small>
+      <i [ngClass]="post.liked ? 'fa-solid fa-heart post-liked' : 'fa-solid fa-heart'" (click)="handleLike(post.id)"></i>
+      <small>{{post.likesCount}}</small>
     </div>
 
     <!--        <a mat-mini-fab matTooltip="Link" routerLink="." aria-label="Example mini fab with a heart icon">-->
