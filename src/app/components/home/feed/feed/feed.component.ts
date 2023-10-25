@@ -11,9 +11,6 @@ import { ModalPostComponent } from "../../../modal-post/modal-post.component";
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent {
-
-
-  // posts: Array<PostResponseModel> = []
   posts: any = []
   likes!: number;
   coments!: number;
@@ -27,10 +24,21 @@ export class FeedComponent {
   }
 
   ngOnInit(): void {
+    this.getPosts();
+    this.listenerWhenPostWasCreated();
+  }
+
+  private listenerWhenPostWasCreated() {
+    this.postNotificationService.postCreated$.subscribe(() => {
+      this.getPosts();
+    });
+  }
+
+  private getPosts() {
     this.service.getAllPosts(0, 100).subscribe(
       res => {
         this.posts = res?.result
-      })
+      });
   }
 
 

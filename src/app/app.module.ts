@@ -29,6 +29,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { FeedComponent } from './components/home/feed/feed/feed.component';
 import { MatCardModule } from "@angular/material/card";
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { PostNotificationService } from './components/listeners/post-notification-service.service';
 
 
 @NgModule({
@@ -64,11 +65,13 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     MatTooltipModule,
     MatCardModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true,
-  },],
+  providers: [
+    PostNotificationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
