@@ -18,7 +18,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
@@ -30,6 +30,7 @@ import { FeedComponent } from './components/home/feed/feed/feed.component';
 import { MatCardModule } from "@angular/material/card";
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { PostNotificationService } from './components/listeners/post-notification-service.service';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { PostNotificationService } from './components/listeners/post-notificatio
     ProfileComponent,
     NotificationComponent,
     SettingsComponent,
-    FeedComponent
+    FeedComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { PostNotificationService } from './components/listeners/post-notificatio
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
   ],
   providers: [
     PostNotificationService,
