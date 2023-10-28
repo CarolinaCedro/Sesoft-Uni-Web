@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly url: string = "https://sesoft-uni-backend-development.up.railway.app/"
   private readonly endpoint = 'users'
 
   constructor(private http: HttpClient, private route: Router) { }
@@ -19,6 +18,6 @@ export class UserService {
       search: searchQuery
     };
 
-    return this.http.get(this.url + this.endpoint, { params }).pipe()
+    return this.http.get(environment.apiUrl + this.endpoint, { params }).pipe()
   }
 }
