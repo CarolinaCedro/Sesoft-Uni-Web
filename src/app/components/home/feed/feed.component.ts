@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-import { PostService } from "../../../../post.service";
-import { PostNotificationService } from "../../../listeners/post-notification-service.service";
-import { removeToLocalStorage } from "../../../../../utils/local-storage.util";
-import { ModalPostComponent } from "../../../modal-post/modal-post.component";
+import { PostService } from "../../../post.service";
+import { PostNotificationService } from "../../listeners/post-notification-service.service";
+import { removeToLocalStorage } from "../../../../utils/local-storage.util";
+import { ModalPostComponent } from "../../modal-post/modal-post.component";
+import { formatRelativeTime } from 'src/utils/datetime.util';
 
 @Component({
   selector: 'app-feed',
@@ -14,6 +15,7 @@ export class FeedComponent {
   posts: any = []
   likes!: number;
   coments!: number;
+  loading: boolean = false;
 
 
   constructor(
@@ -35,12 +37,17 @@ export class FeedComponent {
   }
 
   private getPosts() {
+    this.loading = true;
     this.service.getAllPosts(0, 100).subscribe(
       res => {
         this.posts = res?.result
+        this.loading = false;
       });
   }
 
+  formatRelativeTime(datetimePost: string) {
+    return formatRelativeTime(datetimePost);
+  }
 
   singOut() {
     removeToLocalStorage('token_%sesoftuni%');
