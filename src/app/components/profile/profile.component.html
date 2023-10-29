@@ -1,9 +1,43 @@
-<div class="profile-container">
-  <div class="profile-picture">
-    <img src="https://angular-material.fusetheme.com/assets/images/avatars/brian-hughes.jpg">
+<mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
+<div *ngIf="!loading" class="profile-container">
+
+  <div class="profile-content">
+    <div class="profile-picture">
+      <img src="https://angular-material.fusetheme.com/assets/images/avatars/brian-hughes.jpg">
+    </div>
+    <div class="profile-name">{{user.profile.displayName}}</div>
+    <div class="profile-username">@{{user.username}}</div>
+    <div class="profile-bio" *ngIf="user.profile.bio">{{user.profile.bio}}</div>
+    <div class="profile-info">
+      <div class="info-item">
+        <div class="info-label">Posts</div>
+        <div class="info-value">{{user.postsCount}}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Seguidores</div>
+        <div class="info-value">{{user.followersCount}}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Seguindo</div>
+        <div class="info-value">{{user.followingsCount}}</div>
+      </div>
+    </div>
   </div>
-  <div class="profile-name">Carolina Cedro</div>
-  <div class="profile-email">seuemail@example.com</div>
-  <div class="profile-email">Santa helena de goiás</div>
-  <div class="profile-email">Masculino</div>
+  <div class="tabs">
+    <button class="tab-btn" data-tab="postagens" [class.active]="activeTab === 'postagens'"
+      (click)="switchTab('postagens')">
+      Postagens
+    </button>
+    <button class="tab-btn" data-tab="curtidas" [class.active]="activeTab === 'curtidas'"
+      (click)="switchTab('curtidas')">
+      Curtidas
+    </button>
+  </div>
+
+  <div class="tab-content" id="postagens">
+    <!-- Conteúdo aqui -->
+  </div>
+  <div class="tab-content" id="curtidas">
+    <!-- Conteúdo aqui -->
+  </div>
 </div>

@@ -1,0 +1,19 @@
+<div class="search-container">
+  <h1>Buscar Usuários</h1>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Digite o nome do usuário</mat-label>
+    <input [(ngModel)]="searchQuery" (input)="onSearchInput()" matInput cdkTextareaAutosize />
+  </mat-form-field>
+
+  <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
+
+</div>
+
+<ul class="user-list">
+  <li *ngFor="let user of searchResults">
+    <div class="user-info">
+      <span>{{user.profile.displayName}}</span>
+      <p>@{{user.username}}</p>
+    </div>
+  </li>
+</ul>

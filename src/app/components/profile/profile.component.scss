@@ -8,6 +8,14 @@
   text-align: center;
 }
 
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
 .profile-picture {
   width: 120px;
   height: 120px;
@@ -19,8 +27,10 @@
   justify-content: center;
   color: #fff;
   font-size: 36px;
-  img{
+
+  img {
     border-radius: 50%;
+    max-width: 100%;
   }
 }
 
@@ -29,7 +39,73 @@
   font-weight: 500;
 }
 
-.profile-email {
+.profile-bio {
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.profile-username {
   font-size: 16px;
   color: #666;
+}
+
+.profile-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+
+  .info-item {
+    margin-right: 20px;
+    text-align: center;
+
+    .info-label {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .info-value {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  .tab-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 18px;
+    outline: none;
+    transition: color 0.3s;
+    margin: 0 10px;
+    /* Espaçamento entre botões */
+
+    &:hover {
+      color: #2196F3;
+    }
+  }
+
+  .active {
+    color: #2196F3;
+    background: #f2f2f2;
+    border-radius: 4px;
+  }
+}
+
+.tab-content {
+  display: none;
+  margin-top: 20px;
+}
+
+#postagens.active {
+  display: block;
 }
