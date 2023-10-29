@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PostService {
-  private readonly url: string = "https://sesoft-uni-backend-development.up.railway.app/"
+  private readonly url: string = environment.apiUrl
   private readonly endpoint = 'posts'
 
   constructor(private http: HttpClient, private route: Router) { }

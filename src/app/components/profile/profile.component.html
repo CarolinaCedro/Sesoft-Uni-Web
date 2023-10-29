@@ -3,7 +3,7 @@
 
   <div class="profile-content">
     <div class="profile-picture">
-      <img src="https://angular-material.fusetheme.com/assets/images/avatars/brian-hughes.jpg">
+        <img src="{{user?.profile?.icon?.url ? user.profile.icon.url : ''}}" alt="">
     </div>
     <div class="profile-name">{{user.profile.displayName}}</div>
     <div class="profile-username">@{{user.username}}</div>
