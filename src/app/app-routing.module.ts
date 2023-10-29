@@ -8,6 +8,7 @@ import { ExplorerComponent } from "./components/explorer/explorer.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { NotificationComponent } from "./components/notification/notification.component";
+
 import { FeedComponent } from "./components/home/feed/feed.component";
 import { SearchComponent } from './components/search/search.component';
 
