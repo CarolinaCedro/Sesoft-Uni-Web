@@ -10,8 +10,11 @@ import { SettingsComponent } from "./components/settings/settings.component";
 import { NotificationComponent } from "./components/notification/notification.component";
 
 
+
+
 import { SearchComponent } from './components/search/search.component';
-import {FeedComponent} from "./components/home/feed/feed/feed.component";
+import { FeedComponent } from './components/home/feed/feed.component';
+
 
 const routes: Routes = [
   { path: "", component: SignInComponent },

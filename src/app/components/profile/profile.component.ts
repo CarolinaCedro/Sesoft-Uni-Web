@@ -1,7 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { UserService } from 'src/app/services/api/users.service';
 
-interface UserProfile {
+export type UserProfile = {
   id: string;
   username: string;
   email: string;
@@ -19,8 +19,13 @@ interface UserProfile {
     createdAt: string;
     updatedAt: string;
     iconStorageId: string | null;
-    icon: string | null;
+    icon: UserIconProps;
   };
+}
+
+type UserIconProps = {
+  id: string;
+  url: string
 }
 
 @Component({
