@@ -30,7 +30,8 @@ import { MatCardModule } from "@angular/material/card";
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { PostNotificationService } from './components/listeners/post-notification-service.service';
 import { SearchComponent } from './components/search/search.component';
-import {FeedComponent} from "./components/home/feed/feed/feed.component";
+import {FeedComponent} from "./components/home/feed/feed.component";
+
 
 
 @NgModule({
