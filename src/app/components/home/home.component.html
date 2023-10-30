@@ -6,11 +6,12 @@
 
     <div class="operations-profile">
       <a routerLink="/home/feed" routerLinkActive="active-link" >Feed</a>
+      <a routerLink="/home/search" routerLinkActive="active-link" >Procurar</a>
       <a routerLink="/home/profile" routerLinkActive="active-link" >Perfil</a>
       <a routerLink="/home/explorer" routerLinkActive="active-link" >Explore</a>
       <!-- <a routerLink="/home/notification" routerLinkActive="active-link"  >Notificações</a> -->
       <a routerLink="/home/settings" routerLinkActive="active-link" >Configurações</a>
-      <a routerLink="/home/search" routerLinkActive="active-link" >Procurar</a>
+
     </div>
     <div class="exit-container">
       <a (click)="singOut()" [routerLink]="['']">
@@ -54,5 +55,72 @@
 
       </ul>
     </div>
+
+    <div>
+      <h4>Conheça nossa Faculdade</h4>
+      <div class="container-faculdade">
+        <img src="assets/unirv.jpg" alt="" >
+      </div>
+    </div>
+
+    <div class="friend-container">
+      <div class="friend-header">
+        <h4>Conecte-se com Amigos</h4>
+      </div>
+      <div class="friend-card">
+        <div class="friend-info">
+          <i class="fas fa-user-circle fa-3x"></i>
+          <p>Willian</p>
+        </div>
+
+        <button class="follow-button">
+          <i class="fas fa-user-plus"></i> Seguir
+        </button>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-info">
+          <i class="fas fa-user-circle fa-3x"></i>
+          <p>Jõao Paraiba</p>
+        </div>
+        <button class="follow-button">
+          <i class="fas fa-user-plus"></i> Seguir
+        </button>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-info">
+          <i class="fas fa-user-circle fa-3x"></i>
+          <p>Carolina Cedro</p>
+        </div>
+        <button class="follow-button">
+          <i class="fas fa-user-plus"></i> Seguir
+        </button>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-info">
+          <i class="fas fa-user-circle fa-3x"></i>
+          <p>Joyce</p>
+        </div>
+        <button class="follow-button">
+          <i class="fas fa-user-plus"></i> Seguir
+        </button>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-info">
+          <i class="fas fa-user-circle fa-3x"></i>
+          <p>Bruna</p>
+        </div>
+        <button class="follow-button">
+          <i class="fas fa-user-plus"></i> Seguir
+        </button>
+      </div>
+    </div>
+
+
   </div>
+
+
 </section>

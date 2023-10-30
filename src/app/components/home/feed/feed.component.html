@@ -5,13 +5,31 @@
       <div class="user-avatar">
         <!-- <img src="{{post.user?.profile ? post.user.profile : 'default-avatar.png'}}" alt=""> @TODO COLOCAR IMAGEM DO USUARIO QUANDO TIVER IMAGENS NO SISTEMA -->
       </div>
-      <div class="user-info">
-        <div class="user-names">
-          <div class="display-name">{{post.user?.profile.displayName}}</div>
-          <div class="username">@{{post.user?.username}}</div>
+
+      <div class="card-action-container">
+        <div class="user-info">
+          <div class="user-names">
+            <div class="display-name">{{post.user?.profile.displayName}}</div>
+            <div class="username">@{{post.user?.username}}</div>
+          </div>
+          <div class="post-time">{{formatRelativeTime(post.createdAt)}}</div>
         </div>
-        <div class="post-time">{{formatRelativeTime(post.createdAt)}}</div>
+
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="deletePostById(post?.id)">
+              <mat-icon>delete</mat-icon>
+              <span>Excluir</span>
+            </button>
+          </mat-menu>
+        </div>
+
       </div>
+
+
     </div>
     <div class="content">
       {{post.content}}
@@ -19,7 +37,7 @@
     <div class="actions-container">
       <div class="action">
         <i [ngClass]="post.liked ? 'fa-solid fa-heart post-liked' : 'fa-solid fa-heart'"
-          (click)="handleLike(post.id)"></i>
+           (click)="handleLike(post.id)"></i>
         <small>{{post.likesCount}}</small>
 
       </div>

@@ -31,6 +31,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { PostNotificationService } from './components/listeners/post-notification-service.service';
 import { SearchComponent } from './components/search/search.component';
 import {FeedComponent} from "./components/home/feed/feed.component";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -67,7 +68,8 @@ import {FeedComponent} from "./components/home/feed/feed.component";
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule
   ],
   providers: [
     PostNotificationService,

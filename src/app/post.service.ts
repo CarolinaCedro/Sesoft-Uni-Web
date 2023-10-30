@@ -76,4 +76,13 @@ export class PostService {
       });
     }
   }
+
+  deletePostById(id: string) {
+    return this.http.delete(this.url + "posts/" + id).pipe(
+      catchError(err => {
+        return throwError(err)
+      }),
+      tap(res => console.log(res))
+    )
+  }
 }

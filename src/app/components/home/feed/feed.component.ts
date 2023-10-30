@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
-import { PostService } from "../../../post.service";
-import { PostNotificationService } from "../../listeners/post-notification-service.service";
-import { removeToLocalStorage } from "../../../../utils/local-storage.util";
-import { ModalPostComponent } from "../../modal-post/modal-post.component";
-import { formatRelativeTime } from 'src/utils/datetime.util';
+import {Component} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {PostService} from "../../../post.service";
+import {PostNotificationService} from "../../listeners/post-notification-service.service";
+import {removeToLocalStorage} from "../../../../utils/local-storage.util";
+import {ModalPostComponent} from "../../modal-post/modal-post.component";
+import {formatRelativeTime} from 'src/utils/datetime.util';
 
 @Component({
   selector: 'app-feed',
@@ -58,6 +58,13 @@ export class FeedComponent {
     this.dialog.open(ModalPostComponent);
   }
 
+  deletePostById(id: string) {
+    this.service.deletePostById(id).subscribe(
+      res => {
+        console.log("o post foi excluido", res)
+      }
+    )
+  }
 
   handleLike(postId: string): void {
     try {
