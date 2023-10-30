@@ -1,43 +1,48 @@
-<mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
-<div *ngIf="!loading" class="profile-container">
+<section>
+  <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
+  <div *ngIf="!loading" class="profile-container">
 
-  <div class="profile-content">
-    <div class="profile-picture">
-        <img src="{{user.profile.icon.url ? user.profile.icon.url : ''}}" alt="">
+    <div class="profile-content">
+      <div class="profile-picture">
+        <img src="{{user.profile.icon?.url ? user.profile.icon?.url : ''}}" alt="">
+      </div>
+      <div class="profile-name">{{user.profile.displayName}}</div>
+      <div class="profile-username">@{{user.username}}</div>
+      <div class="profile-bio" *ngIf="user.profile.bio">{{user.profile.bio}}</div>
+      <div class="profile-info">
+        <div class="info-item">
+          <div class="info-label">Posts</div>
+          <div class="info-value">{{user.postsCount}}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Seguidores</div>
+          <div class="info-value">{{user.followersCount}}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Seguindo</div>
+          <div class="info-value">{{user.followingsCount}}</div>
+        </div>
+      </div>
     </div>
-    <div class="profile-name">{{user.profile.displayName}}</div>
-    <div class="profile-username">@{{user.username}}</div>
-    <div class="profile-bio" *ngIf="user.profile.bio">{{user.profile.bio}}</div>
-    <div class="profile-info">
-      <div class="info-item">
-        <div class="info-label">Posts</div>
-        <div class="info-value">{{user.postsCount}}</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Seguidores</div>
-        <div class="info-value">{{user.followersCount}}</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Seguindo</div>
-        <div class="info-value">{{user.followingsCount}}</div>
-      </div>
+    <div class="tabs">
+      <button class="tab-btn" data-tab="postagens" [class.active]="activeTab === 'postagens'"
+              (click)="switchTab('postagens')">
+        Postagens
+      </button>
+      <button class="tab-btn" data-tab="curtidas" [class.active]="activeTab === 'curtidas'"
+              (click)="switchTab('curtidas')">
+        Curtidas
+      </button>
     </div>
-  </div>
-  <div class="tabs">
-    <button class="tab-btn" data-tab="postagens" [class.active]="activeTab === 'postagens'"
-      (click)="switchTab('postagens')">
-      Postagens
-    </button>
-    <button class="tab-btn" data-tab="curtidas" [class.active]="activeTab === 'curtidas'"
-      (click)="switchTab('curtidas')">
-      Curtidas
-    </button>
+
+    <div class="tab-content" id="postagens">
+      <!-- Conteúdo aqui -->
+    </div>
+    <div class="tab-content" id="curtidas">
+      <!-- Conteúdo aqui -->
+    </div>
   </div>
 
-  <div class="tab-content" id="postagens">
-    <!-- Conteúdo aqui -->
-  </div>
-  <div class="tab-content" id="curtidas">
-    <!-- Conteúdo aqui -->
-  </div>
-</div>
+</section>
+
+

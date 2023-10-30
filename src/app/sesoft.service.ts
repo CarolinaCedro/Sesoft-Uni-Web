@@ -36,7 +36,7 @@ export class SesoftService {
     return this.http.post<LoginResponseProps>(`${environment.apiUrl}auth/signin`, payload).pipe(
       map(({ token }: LoginResponseProps) => {
         saveToLocalStorage('token_%sesoftuni%', token);
-        this.route.navigate(['home']);
+        this.route.navigate(['home/feed']);
         return { token };
       }),
       catchError((error) => {

@@ -25,7 +25,7 @@ export type UserProfile = {
 
 type UserIconProps = {
   id: string;
-  url: string
+  url?: string
 }
 
 @Component({
