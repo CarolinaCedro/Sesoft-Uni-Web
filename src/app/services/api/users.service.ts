@@ -31,6 +31,12 @@ export class UserService {
     return this.http.get(environment.apiUrl + endpoint).pipe()
   }
 
+  getUserPosts(userId: string): Observable<any> {
+    const endpoint = `users/${userId}/posts`
+
+    return this.http.get(environment.apiUrl + endpoint).pipe()
+  }
+
   findById(id: string): Observable<any> {
     const endpoint = `users/find/${id}`
     return this.http.get(environment.apiUrl + endpoint).pipe()

@@ -40,12 +40,18 @@ export class PostCardComponent {
     // Gambiarra para ignorar os elementos clicaveis do post, desculpe pelos meus atos.
     const shouldIgnoreClick = clickedElement.classList.contains('fa-solid') ||
       clickedElement.classList.contains('mat-mdc-button-touch-target') ||
+      clickedElement.classList.contains('user-avatar') ||
+      clickedElement.classList.contains('display-name') ||
       clickedElement.closest('.fa-solid.fa-heart');
 
 
     if (!shouldIgnoreClick) {
       this.router.navigate(['/home/post', this.id]);
     }
+  }
+
+  redirectToUser(userId: string) {
+    this.router.navigate(['/home/user', userId]);
   }
 
   deletePost() {

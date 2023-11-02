@@ -1,12 +1,12 @@
 <div class="card-feed" (click)="redirectToPost($event)">
   <div class="post-header">
-    <div class="user-avatar">
+    <div (click)="redirectToUser(userId)" class="user-avatar">
       <img src="{{profilePicture}}" alt="">
     </div>
     <div class="card-action-container">
       <div class="user-info">
         <div class="user-names">
-          <div class="display-name">{{displayName}}</div>
+          <div (click)="redirectToUser(userId)" class="display-name">{{displayName}}</div>
           <div class="username">@{{username}}</div>
         </div>
         <div class="post-time">{{formatRelativeTime(createdAt)}}</div>

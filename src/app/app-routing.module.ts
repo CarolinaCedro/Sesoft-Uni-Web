@@ -11,7 +11,7 @@ import { NotificationComponent } from "./components/notification/notification.co
 import { SearchComponent } from './components/search/search.component';
 import { FeedComponent } from './components/home/feed/feed.component';
 import { PostComponent } from './components/post/post.component';
-
+import { UsersProfileComponent } from './components/users-profile/users-profile.component';
 
 const routes: Routes = [
   { path: "", component: SignInComponent },
@@ -34,6 +34,10 @@ const routes: Routes = [
       {
         path: "profile",
         component: ProfileComponent
+      },
+      {
+        path: "user/:id",
+        component: UsersProfileComponent
       },
       {
         path: "notification",

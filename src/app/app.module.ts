@@ -35,6 +35,8 @@ import { PostComponent } from './components/post/post.component';
 import { PostCardComponent } from './components/utils/post-card/post-card.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LoadingSpinnerComponent } from './components/utils/loading-spinner/loading-spinner.component';
+import { UsersProfileComponent } from './components/users-profile/users-profile.component';
+import { UserCardComponent } from './components/utils/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { LoadingSpinnerComponent } from './components/utils/loading-spinner/load
     PostComponent,
     PostCardComponent,
     LoadingSpinnerComponent,
+    UsersProfileComponent,
+    UserCardComponent,
   ],
   imports: [
     BrowserModule,
