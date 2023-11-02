@@ -1,48 +1,20 @@
-<section *ngIf="showContainer">
-  <div class="search-container">
-    <h1>Buscar Usuários</h1>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Digite o nome do usuário</mat-label>
-      <input [(ngModel)]="searchQuery" (input)="onSearchInput()" matInput cdkTextareaAutosize/>
-    </mat-form-field>
-
-    <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
-
-  </div>
+<div class="search-container">
+  <h1>Buscar Usuários</h1>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Digite o nome do usuário</mat-label>
+    <input [(ngModel)]="searchQuery" (input)="onSearchInput()" matInput cdkTextareaAutosize />
+  </mat-form-field>
+  <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
 
   <ul class="user-list">
     <li *ngFor="let user of searchResults" (click)="getUserId(user?.id)">
       <div class="user-info">
-        <span>{{user.profile.displayName}}</span>
-        <p>@{{user.username}}</p>
+        <img [src]="user?.profile?.icon?.url ?? ''" alt="">
+        <div class="user-details">
+          <span>{{ user.profile.displayName }}</span>
+          <p>@{{ user.username }}</p>
+        </div>
       </div>
     </li>
   </ul>
-
-</section>
-
-<div *ngIf="hideContainer">
-  <div class="user-profile">
-    <div class="user-avatar">
-      <img src="https://angular-material.fusetheme.com/assets/images/avatars/brian-hughes.jpg" alt="User Avatar">
-    </div>
-    <button class="follow-button">
-      <i class="fas fa-user-plus"></i> Seguir
-    </button>
-    <div class="user-info">
-      <h1>{{ userFilter?.userFiltername }}</h1>
-      <p><b>Email:</b> {{ userFilter?.email }}</p>
-      <p><b>Seguidores:</b> {{ userFilter?.followersCount }}</p>
-      <p><b>Seguindo:</b> {{ userFilter?.followingsCount }}</p>
-      <p><b>Curtidas:</b> {{ userFilter?.likesCount }}</p>
-      <p><b>Postagens:</b> {{ userFilter?.postsCount }}</p>
-      <p><b>Ingressou em: </b>: {{ userFilter?.createdAt | date:'dd/MM/yyyy' }}</p>
-      <p><b>Ultima Atualização:</b> {{ userFilter?.updatedAt | date:'dd/MM/yyyy' }}</p>
-    </div>
-    <div class="user-bio">
-      <h2><b>Bio:</b></h2>
-      <p>{{ userFilter?.profile?.bio }}</p>
-    </div>
-  </div>
-
 </div>
