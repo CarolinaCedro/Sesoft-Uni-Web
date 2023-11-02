@@ -26,10 +26,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getAllPosts(0, 100).subscribe(
-      res => {
-        this.posts = res?.result
-      })
+    // this.service.getAllPosts(0, 100).subscribe(
+    //   res => {
+    //     this.posts = res?.result
+    //   })
 
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
   }
