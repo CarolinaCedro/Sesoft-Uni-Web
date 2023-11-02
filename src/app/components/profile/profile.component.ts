@@ -1,5 +1,6 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/api/users.service';
+import { PostNotificationService } from '../listeners/post-notification-service.service';
 
 export type UserProfile = {
   id: string;
@@ -37,36 +38,49 @@ export class ProfileComponent {
   activeTab: string = 'postagens';
   loading: boolean = false;
   user: UserProfile = {} as UserProfile;
+  mePosts: any;
 
   constructor(
-    private readonly renderer: Renderer2,
-    private readonly service: UserService
+    private readonly service: UserService,
+    private readonly postNotificationService: PostNotificationService,
   ) { }
 
   ngOnInit(): void {
     this.loading = true;
+    this.listenerWhenPostWasCreated();
+    this.listenerWhenPostWasDeleted();
+
+    this.getMe();
+    this.getPosts();
+
+    this.loading = false;
+  }
+
+  private listenerWhenPostWasCreated() {
+    this.postNotificationService.postCreated$.subscribe(() => {
+      this.getMe();
+      this.getPosts();
+    });
+  }
+
+  private listenerWhenPostWasDeleted() {
+    this.postNotificationService.postDeleted$.subscribe(() => {
+      this.getMe();
+      this.getPosts();
+    });
+  }
+
+  private getMe() {
     this.service.getMe().subscribe(
       res => {
         this.user = res;
-        this.loading = false;
       });
   }
 
-  switchTab(tab: string) {
-    this.activeTab = tab;
-
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    tabButtons.forEach((button) => {
-      this.renderer.removeClass(button, 'active');
-    });
-    const activeButton = document.querySelector(`[data-tab=${tab}]`);
-    this.renderer.addClass(activeButton, 'active');
-
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabContents.forEach((content) => {
-      this.renderer.removeClass(content, 'active');
-    });
-    const activeContent = document.querySelector(`#${tab}`);
-    this.renderer.addClass(activeContent, 'active');
+  private getPosts() {
+    this.service.getMePosts().subscribe(
+      res => {
+        this.mePosts = res;
+      });
   }
 }

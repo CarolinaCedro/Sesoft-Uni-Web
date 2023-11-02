@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { formatRelativeTime } from 'src/utils/datetime.util';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 type User = {
   id: string;
@@ -107,13 +108,19 @@ export class PostComponent implements OnInit {
     },
   ];
 
+  form: FormGroup;
   protected loading = false;
   protected newComment: string = '';
 
   constructor(
     private readonly service: PostService,
-    private readonly route: ActivatedRoute
-  ) { }
+    private readonly route: ActivatedRoute,
+    private readonly formBuilder: FormBuilder
+  ) {
+    this.form = this.formBuilder.group({
+      content: ['']
+    });
+  }
 
   addComment() {
     if (this.newComment.trim() !== '') {
@@ -127,7 +134,6 @@ export class PostComponent implements OnInit {
         content: this.newComment
       });
 
-      // Limpar o campo de comentário
       this.newComment = '';
     }
   }
@@ -153,7 +159,6 @@ export class PostComponent implements OnInit {
   }
 
   commentOnPost() { }
-
 
   formatRelativeTime(datetimePost: string) {
     return formatRelativeTime(datetimePost);

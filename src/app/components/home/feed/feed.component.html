@@ -1,50 +1,9 @@
-<mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div *ngIf="!loading">
-  <div class="card-feed" *ngFor="let post of posts">
-    <div class="post-header">
-      <div class="user-avatar">
-        <!-- <img src="{{post.user?.profile ? post.user.profile : 'default-avatar.png'}}" alt=""> @TODO COLOCAR IMAGEM DO USUARIO QUANDO TIVER IMAGENS NO SISTEMA -->
-      </div>
-
-      <div class="card-action-container">
-        <div class="user-info">
-          <div class="user-names">
-            <div class="display-name">{{post.user?.profile.displayName}}</div>
-            <div class="username">@{{post.user?.username}}</div>
-          </div>
-          <div class="post-time">{{formatRelativeTime(post.createdAt)}}</div>
-        </div>
-
-        <div>
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="deletePostById(post?.id)">
-              <mat-icon>delete</mat-icon>
-              <span>Excluir</span>
-            </button>
-          </mat-menu>
-        </div>
-
-      </div>
-
-
-    </div>
-    <div class="content"  (click)="redirectToPost(post.id)">
-      {{post.content}}
-    </div>
-    <div class="actions-container">
-      <div class="action">
-        <i [ngClass]="post.liked ? 'fa-solid fa-heart post-liked' : 'fa-solid fa-heart'"
-           (click)="handleLike(post.id)"></i>
-        <small>{{post.likesCount}}</small>
-
-      </div>
-      <div class="action">
-        <i class="fa-solid fa-comment"></i>
-        <small>{{post.repliesCount}}</small>
-      </div>
-    </div>
+  <div *ngFor="let post of posts">
+    <app-post-card [id]="post.id" [content]="post.content" [createdAt]="post.createdAt" [updatedAt]="post.updatedAt"
+      [userId]="post.userId" [repliesCount]="post.repliesCount" [likesCount]="post.likesCount"
+      [username]="post.user.username" [displayName]="post.user.profile.displayName" [liked]="post.liked"
+      [profilePicture]="post.user.profile.icon.url"></app-post-card>
   </div>
 </div>

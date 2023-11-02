@@ -34,18 +34,20 @@
     </div>
   </div>
 
-  <div class="post-comment">
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Adicione um comentário</mat-label>
-      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="content"
-        cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
-    </mat-form-field>
+  <form [formGroup]="form">
+    <div class="post-comment">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Adicione um comentário</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="content"
+          cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field>
 
-    <div class="button-publish">
-      <app-btn-global [buttonPadding]="'.7rem 1rem'" [buttonWidth]="'100%'" [titleButton]="'Publicar'"
-        (click)="addComment()" class="align-right"></app-btn-global>
+      <div class="button-publish">
+        <app-btn-global [buttonPadding]="'.7rem 1rem'" [buttonWidth]="'100%'" [titleButton]="'Publicar'"
+          (click)="addComment()" class="align-right"></app-btn-global>
+      </div>
     </div>
-  </div>
+  </form>
 
   <div class="comments">
     <div *ngFor="let comment of fakeComments" class="comment">

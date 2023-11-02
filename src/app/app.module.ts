@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -30,11 +29,12 @@ import { MatCardModule } from "@angular/material/card";
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { PostNotificationService } from './components/listeners/post-notification-service.service';
 import { SearchComponent } from './components/search/search.component';
-import {FeedComponent} from "./components/home/feed/feed.component";
-import {MatMenuModule} from "@angular/material/menu";
+import { FeedComponent } from "./components/home/feed/feed.component";
+import { MatMenuModule } from "@angular/material/menu";
 import { PostComponent } from './components/post/post.component';
-
-
+import { PostCardComponent } from './components/utils/post-card/post-card.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { LoadingSpinnerComponent } from './components/utils/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,9 @@ import { PostComponent } from './components/post/post.component';
     SettingsComponent,
     FeedComponent,
     SearchComponent,
-    PostComponent
+    PostComponent,
+    PostCardComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import { PostComponent } from './components/post/post.component';
     MatTooltipModule,
     MatCardModule,
     FormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule
   ],
   providers: [
     PostNotificationService,
