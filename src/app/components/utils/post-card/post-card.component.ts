@@ -56,6 +56,12 @@ export class PostCardComponent {
   }
 
   redirectToUser(userId: string) {
+    if (this.authUser.id == userId) {
+      this.router.navigate(['/home/profile']);
+
+      return;
+    }
+
     this.router.navigate(['/home/user', userId]);
   }
 
