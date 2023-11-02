@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { ModalPostComponent } from "../modal-post/modal-post.component";
 import { PostService } from "../../post.service";
-import { removeToLocalStorage } from 'src/utils/local-storage.util';
+import { getFromLocalStorage, removeToLocalStorage } from 'src/utils/local-storage.util';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { removeToLocalStorage } from 'src/utils/local-storage.util';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  authUser: any;
   // posts: Array<PostResponseModel> = []
   posts: any = []
   likes!: number;
@@ -30,10 +30,15 @@ export class HomeComponent implements OnInit {
       res => {
         this.posts = res?.result
       })
+
+    this.authUser = getFromLocalStorage('me_%sesoftuni%');
+    console.log(this.authUser)
+
   }
 
 
   singOut() {
+    removeToLocalStorage('me_%sesoftuni%');
     removeToLocalStorage('token_%sesoftuni%');
   }
 
