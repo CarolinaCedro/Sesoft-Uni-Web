@@ -5,6 +5,7 @@ import {PostNotificationService} from "../../listeners/post-notification-service
 import {removeToLocalStorage} from "../../../../utils/local-storage.util";
 import {ModalPostComponent} from "../../modal-post/modal-post.component";
 import {formatRelativeTime} from 'src/utils/datetime.util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -21,7 +22,8 @@ export class FeedComponent {
   constructor(
     public readonly dialog: MatDialog,
     private readonly service: PostService,
-    private readonly postNotificationService: PostNotificationService
+    private readonly postNotificationService: PostNotificationService,
+    private readonly router: Router
   ) {
   }
 
@@ -96,6 +98,10 @@ export class FeedComponent {
       post.likesCount--;
       post.liked = false;
     });
+  }
+
+  redirectToPost(id: string) {
+    this.router.navigate(['/home/post', id]);
   }
 
   handleComents() {

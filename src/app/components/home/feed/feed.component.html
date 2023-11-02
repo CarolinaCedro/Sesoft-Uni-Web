@@ -1,6 +1,6 @@
 <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
 <div *ngIf="!loading">
-  <div class="card-feed" *ngFor="let post of posts">
+  <div class="card-feed" (click)="redirectToPost(post.id)" *ngFor="let post of posts">
     <div class="post-header">
       <div class="user-avatar">
         <!-- <img src="{{post.user?.profile ? post.user.profile : 'default-avatar.png'}}" alt=""> @TODO COLOCAR IMAGEM DO USUARIO QUANDO TIVER IMAGENS NO SISTEMA -->
