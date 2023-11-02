@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PostService } from 'src/app/post.service';
 import { formatRelativeTime } from 'src/utils/datetime.util';
 import { PostNotificationService } from '../../listeners/post-notification-service.service';
+import { getFromLocalStorage } from 'src/utils/local-storage.util';
 
 @Component({
   selector: 'app-post-card',
@@ -23,12 +24,16 @@ export class PostCardComponent {
   @Input() displayName: string = '';
   @Input() liked: boolean = false;
 
+  protected authUser: any;
+
   constructor(
     private readonly router: Router,
     private readonly postService: PostService,
     private readonly snackBar: MatSnackBar,
     private postNotificationService: PostNotificationService
-  ) { }
+  ) {
+    this.authUser = getFromLocalStorage('me_%sesoftuni%');
+  }
 
   formatRelativeTime(datetimePost: string) {
     return formatRelativeTime(datetimePost);
