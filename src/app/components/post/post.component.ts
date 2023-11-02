@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/post.service';
 import { ActivatedRoute } from '@angular/router';
+import { formatRelativeTime } from 'src/utils/datetime.util';
 
 type User = {
   id: string;
@@ -154,7 +155,9 @@ export class PostComponent implements OnInit {
   commentOnPost() { }
 
 
-  formatRelativeTime(date: string) { }
+  formatRelativeTime(datetimePost: string) {
+    return formatRelativeTime(datetimePost);
+  }
 
   handleLike(postId: string): void {
     try {
@@ -177,14 +180,14 @@ export class PostComponent implements OnInit {
   private likePost(post: any) {
     this.service.like(post.id).subscribe(() => {
       post.likesCount++;
-      post.liked = true;
+      post.userLiked = true;
     });
   }
 
   private unlikePost(post: any) {
     this.service.unlike(post.id).subscribe(() => {
       post.likesCount--;
-      post.liked = false;
+      post.userLiked = false;
     });
   }
 }
