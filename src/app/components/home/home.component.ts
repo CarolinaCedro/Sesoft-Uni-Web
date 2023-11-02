@@ -32,8 +32,6 @@ export class HomeComponent implements OnInit {
       })
 
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
-    console.log(this.authUser)
-
   }
 
 

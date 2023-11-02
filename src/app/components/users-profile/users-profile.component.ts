@@ -15,7 +15,8 @@ export class UsersProfileComponent {
   activeTab: string = 'postagens';
   loading: boolean = false;
   user: UserProfile = {} as UserProfile;
-  mePosts: any;
+  likedPosts: any;
+  posts: any;
 
   constructor(
     private readonly service: UserService,
@@ -28,12 +29,12 @@ export class UsersProfileComponent {
 
     this.getUser();
     this.getUserPosts();
+    this.getLikedPosts();
 
     this.loading = false;
   }
 
   private getUser() {
-
     this.service.findById(this.userId).subscribe(
       res => {
         this.user = res;
@@ -43,7 +44,14 @@ export class UsersProfileComponent {
   private getUserPosts() {
     this.service.getUserPosts(this.userId).subscribe(
       res => {
-        this.mePosts = res;
+        this.posts = res;
+      });
+  }
+
+  private getLikedPosts() {
+    this.service.getUserLikedPosts(this.userId).subscribe(
+      res => {
+        this.likedPosts = res;
       });
   }
 }

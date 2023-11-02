@@ -29,7 +29,6 @@ export class PostService {
         return throwError(err);
       }),
       tap(res => {
-        console.log("aqui os resultados", res);
       })
     );
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/api/users.service';
 import { PostNotificationService } from '../listeners/post-notification-service.service';
+import { getFromLocalStorage } from 'src/utils/local-storage.util';
 
 export type UserProfile = {
   id: string;
@@ -39,6 +40,8 @@ export class ProfileComponent {
   loading: boolean = false;
   user: UserProfile = {} as UserProfile;
   mePosts: any;
+  likedPosts: any;
+  authUser: any;
 
   constructor(
     private readonly service: UserService,
@@ -50,8 +53,11 @@ export class ProfileComponent {
     this.listenerWhenPostWasCreated();
     this.listenerWhenPostWasDeleted();
 
+    this.authUser = getFromLocalStorage('me_%sesoftuni%');
+
     this.getMe();
     this.getPosts();
+    this.getLikedPosts();
 
     this.loading = false;
   }
@@ -78,9 +84,16 @@ export class ProfileComponent {
   }
 
   private getPosts() {
-    this.service.getMePosts().subscribe(
+    this.service.getUserPosts(this.authUser.id).subscribe(
       res => {
         this.mePosts = res;
+      });
+  }
+
+  private getLikedPosts() {
+    this.service.getUserLikedPosts(this.authUser.id).subscribe(
+      res => {
+        this.likedPosts = res;
       });
   }
 }

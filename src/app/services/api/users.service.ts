@@ -31,6 +31,12 @@ export class UserService {
     return this.http.get(environment.apiUrl + endpoint).pipe()
   }
 
+  getUserLikedPosts(userId: string): Observable<any> {
+    const endpoint = `users/${userId}/posts/liked`
+
+    return this.http.get(environment.apiUrl + endpoint).pipe()
+  }
+
   getUserPosts(userId: string): Observable<any> {
     const endpoint = `users/${userId}/posts`
 
