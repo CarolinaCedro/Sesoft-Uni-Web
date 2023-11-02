@@ -8,12 +8,9 @@ import { ExplorerComponent } from "./components/explorer/explorer.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { NotificationComponent } from "./components/notification/notification.component";
-
-
-
-
 import { SearchComponent } from './components/search/search.component';
 import { FeedComponent } from './components/home/feed/feed.component';
+import { PostComponent } from './components/post/post.component';
 
 
 const routes: Routes = [
@@ -29,6 +26,10 @@ const routes: Routes = [
       {
         path: "explorer",
         component: ExplorerComponent
+      },
+      {
+        path: "post/:id",
+        component: PostComponent
       },
       {
         path: "profile",

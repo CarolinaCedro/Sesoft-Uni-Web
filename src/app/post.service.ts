@@ -5,6 +5,7 @@ import { catchError, Observable, tap, throwError } from "rxjs";
 import { PostResponseModel } from "./interfaces/post-response.models";
 import { getFromLocalStorage } from 'src/utils/local-storage.util';
 import { environment } from 'src/environments/environment';
+import { Post } from './components/post/post.component';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,9 @@ export class PostService {
     )
   }
 
+  find(id: string): Observable<Post> {
+    return this.http.get<Post>(`${environment.apiUrl}${this.endpoint}/${id}`).pipe();
+  }
 
   getHeaders(): HttpHeaders {
     const token = getFromLocalStorage('token_%sesoftuni%');

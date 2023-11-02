@@ -32,6 +32,7 @@ import { PostNotificationService } from './components/listeners/post-notificatio
 import { SearchComponent } from './components/search/search.component';
 import {FeedComponent} from "./components/home/feed/feed.component";
 import {MatMenuModule} from "@angular/material/menu";
+import { PostComponent } from './components/post/post.component';
 
 
 
@@ -49,7 +50,8 @@ import {MatMenuModule} from "@angular/material/menu";
     NotificationComponent,
     SettingsComponent,
     FeedComponent,
-    SearchComponent
+    SearchComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
