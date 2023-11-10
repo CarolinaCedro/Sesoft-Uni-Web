@@ -1,0 +1,44 @@
+<div class="profile-container">
+  <div class="profile-content">
+    <div class="profile-picture">
+      <img src="{{profilePicture}}" alt="">
+    </div>
+    <div class="profile-name">{{displayName}}</div>
+    <div class="profile-username">@{{username}}</div>
+    <div class="profile-bio" *ngIf="bio">{{bio}}</div>
+    <div class="profile-info">
+      <div class="info-item">
+        <div class="info-label">Posts</div>
+        <div class="info-value">{{postsCount}}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Seguidores</div>
+        <div class="info-value">{{followersCount}}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Seguindo</div>
+        <div class="info-value">{{followingsCount}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content">
+    <mat-tab-group>
+      <mat-tab label="Postagens">
+        <div class="tab-content" *ngFor="let post of posts">
+          <app-post-card [id]="post.id" [content]="post.content" [createdAt]="post.createdAt"
+            [updatedAt]="post.updatedAt" [userId]="post.userId" [repliesCount]="post.repliesCount"
+            [likesCount]="post.likesCount" [username]="post.user.username" [displayName]="post.user.profile.displayName"
+            [liked]="post.liked" [profilePicture]="post.user?.profile?.icon?.url ?? ''"></app-post-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Curtidas">
+        <div class="tab-content" *ngFor="let post of likedPosts">
+          <app-post-card [id]="post.id" [content]="post.content" [createdAt]="post.createdAt"
+            [updatedAt]="post.updatedAt" [userId]="post.userId" [repliesCount]="post.repliesCount"
+            [likesCount]="post.likesCount" [username]="post.user.username" [displayName]="post.user.profile.displayName"
+            [liked]="post.liked" [profilePicture]="post.user?.profile?.icon?.url ?? ''"></app-post-card>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
+<div *ngIf="!loading">
+
+  <div class="publicacao">
+    <div class="user-info">
+      <div class="user-avatar">
+        <!-- <img *ngIf="post.user.profile.icon" [src]="post.user.profile.icon" alt="{{post.user.username}}">
+      <i *ngIf="!post.user.profile.icon">{{post.user.username.charAt(0)}}</i> -->
+      </div>
+      <div class="user-details">
+        <div class="user-display-name">{{post.user.profile.displayName}}</div>
+        <div class="user-username">@{{post.user.username}}</div>
+        <div class="post-time">{{formatRelativeTime(post.createdAt)}}</div>
+      </div>
+    </div>
+    <div class="post-content">
+      {{post.content}}
+    </div>
+    <div class="post-attachments" *ngIf="post.files && post.files.length > 0">
+      <div class="attachment" *ngFor="let file of post.files">
+        <img [src]="file.storage.url" alt="Anexo">
+      </div>
+    </div>
+    <div class="actions-container">
+      <div class="action">
+        <i [ngClass]="post.userLiked ? 'fa-solid fa-heart post-liked' : 'fa-solid fa-heart'"
+          (click)="handleLike(post.id)"></i>
+        <small>{{post.likesCount}}</small>
+      </div>
+      <div class="action">
+        <i class="fa-solid fa-comment"></i>
+        <small>{{post.repliesCount}}</small>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="post-comment">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Adicione um comentário</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="content"
+          cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field>
+
+      <div class="button-publish">
+        <app-btn-global [buttonPadding]="'.7rem 1rem'" [buttonWidth]="'100%'" [titleButton]="'Publicar'"
+          (click)="addComment()" class="align-right"></app-btn-global>
+      </div>
+    </div>
+  </form>
+
+  <div class="comments">
+    <div *ngFor="let comment of fakeComments" class="comment">
+      <div class="comment-avatar">
+        <img [src]="'https://via.placeholder.com/48'" alt="Avatar">
+      </div>
+      <div class="comment-content">
+        <div class="comment-username">{{comment.user.profile.displayName}} <span>@{{comment.user.username}}</span></div>
+        <p>{{comment.content}}</p>
+        <div class="comment-actions">
+          <span>5h ago</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

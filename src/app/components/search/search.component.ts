@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {UserService} from 'src/app/services/api/users.service';
-import {of, Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { UserService } from 'src/app/services/api/users.service';
+import { of, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -19,7 +19,10 @@ export class SearchComponent {
   public showContainer: boolean = true;
   public hideContainer: boolean = false;
 
-  constructor(private readonly service: UserService, private router: Router) {
+  constructor(
+    private readonly service: UserService,
+    private readonly router: Router
+  ) {
     this.searchQuerySubject
       .pipe(
         debounceTime(300),
@@ -46,17 +49,7 @@ export class SearchComponent {
     this.searchQuerySubject.next(this.searchQuery);
   }
 
-  getUserId(id: any) {
-    console.log("Id ", id)
-    this.showContainer = false;
-    this.hideContainer = true
-
-    this.service.findById(id).subscribe(
-      res => {
-        console.log("Este é o cara filtrado", res)
-        this.userFilter = res
-      }
-    )
-    // this.router.navigate(['home/profile'])
+  getUserId(userId: string) {
+    this.router.navigate(['/home/user', userId]);
   }
 }

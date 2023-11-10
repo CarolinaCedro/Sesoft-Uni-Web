@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { SesoftService } from "../../sesoft.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { saveToLocalStorage } from 'src/utils/local-storage.util';
+import { UserService } from 'src/app/services/api/users.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,7 +19,13 @@ export class SignInComponent implements OnInit {
 
   public viewPage!: boolean
 
-  constructor(private router: Router, private service: SesoftService, private _snackBar: MatSnackBar, private builder: FormBuilder) {
+  constructor(
+    private router: Router,
+    private service: SesoftService,
+    private userService: UserService,
+    private _snackBar: MatSnackBar,
+    private builder: FormBuilder
+  ) {
     this.form = builder.group({
       email: ["", Validators.email],
       password: [""]
@@ -70,6 +78,11 @@ export class SignInComponent implements OnInit {
         () => {
           this.isValidationInProgress = false;
           this.errorLogin = false;
+          this.userService.getMe().subscribe(
+            (me) => {
+              saveToLocalStorage('me_%sesoftuni%', me);
+            }
+          );
         },
         (error: any) => {
           console.log("Erro ao fazer login:", error);

@@ -1,8 +1,11 @@
 .search-container {
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 
   h1 {
     font-size: 1.5rem;
@@ -35,18 +38,19 @@
       background-color: #f1f1f1;
     }
 
-    img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      display: block;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      margin-right: 15px;
-    }
-
-    div.user-info {
+    .user-info {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: block;
+        margin-right: 15px;
+        background-color: #FFBB55;
+        border: 1px solid #3270B4;
+      }
 
       span {
         font-size: 1.2rem;
@@ -62,68 +66,3 @@
     }
   }
 }
-
-.user-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border: 1px solid #ddd;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  color: #666;
-
-  b{
-    color: #000000;
-  }
-}
-
-.user-avatar img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.user-info {
-  margin-top: 20px;
-}
-
-.user-info h1 {
-  font-size: 24px;
-  margin: 0;
-}
-
-.user-info p {
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-.user-bio {
-  margin-top: 20px;
-}
-
-.follow-button {
-  background-color: #3270B4;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 7px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.follow-button i {
-  margin-right: 2px;
-}
-
-.follow-button:hover {
-  background-color: #3270B4;
-}
-
-
-
-

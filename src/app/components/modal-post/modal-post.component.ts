@@ -36,7 +36,7 @@ export class ModalPostComponent implements OnInit {
   handlePostagem(form: FormGroup) {
     this.service.createPost(form.value).subscribe(
       res => {
-        this.openSnackBar("Postagem criada !")
+        this.openSnackBar("Postagem criada!")
         this.postNotificationService.notifyPostCreated();
         this.dialogRef.close("close")
       }, error => {

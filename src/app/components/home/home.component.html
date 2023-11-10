@@ -1,16 +1,16 @@
 <section>
   <div class="columConfig">
     <div class="profile-pic">
-      <img src="https://angular-material.fusetheme.com/assets/images/avatars/brian-hughes.jpg">
+      <img src="{{authUser?.profile?.icon?.url ?? ''}}">
     </div>
 
     <div class="operations-profile">
-      <a routerLink="/home/feed" routerLinkActive="active-link" >Feed</a>
-      <a routerLink="/home/search" routerLinkActive="active-link" >Procurar</a>
-      <a routerLink="/home/profile" routerLinkActive="active-link" >Perfil</a>
-      <a routerLink="/home/explorer" routerLinkActive="active-link" >Explore</a>
+      <a routerLink="/home/feed" routerLinkActive="active-link">Feed</a>
+      <a routerLink="/home/search" routerLinkActive="active-link">Procurar</a>
+      <a routerLink="/home/profile" routerLinkActive="active-link">Perfil</a>
+      <a routerLink="/home/explorer" routerLinkActive="active-link">Explore</a>
       <!-- <a routerLink="/home/notification" routerLinkActive="active-link"  >Notificações</a> -->
-      <a routerLink="/home/settings" routerLinkActive="active-link" >Configurações</a>
+      <a routerLink="/home/settings" routerLinkActive="active-link">Configurações</a>
 
     </div>
     <div class="exit-container">
@@ -22,13 +22,13 @@
   </div>
   <div class="columFeed">
 
-      <div class="header-home">
-        <h4>Home</h4>
-      </div>
-      <div class="btn-container">
-        <app-btn-global [titleButton]="'Post'" [buttonWidth]="'15%'" (click)="openDialog()"
-                        [buttonPadding]="'.7rem 1rem'"></app-btn-global>
-      </div>
+    <div class="header-home">
+      <h4>Home</h4>
+    </div>
+    <div class="btn-container">
+      <app-btn-global [titleButton]="'Post'" [buttonWidth]="'15%'" (click)="openDialog()"
+        [buttonPadding]="'.7rem 1rem'"></app-btn-global>
+    </div>
     <div class="teste">
       <router-outlet></router-outlet>
 
@@ -59,7 +59,7 @@
     <div>
       <h4>Conheça nossa Faculdade</h4>
       <div class="container-faculdade">
-        <img src="assets/unirv.jpg" alt="" >
+        <img src="assets/unirv.jpg" alt="">
       </div>
     </div>
 
