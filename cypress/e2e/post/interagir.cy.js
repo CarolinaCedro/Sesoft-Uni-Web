@@ -9,7 +9,9 @@ describe('Deve interagir em outras publicações', () => {
 
         cy.url().should('eq', 'https://sesoft-uni-web.vercel.app/home/feed');
 
-        cy.get('i.fa-heart[_ngcontent-ng-c589529149]').each(($element, index) => {
+        cy.wait(2000);
+
+        cy.get('i.fa-solid.fa-heart').each(($element, index) => {
             if (index < 5) {
               cy.wrap($element).click();
             }
