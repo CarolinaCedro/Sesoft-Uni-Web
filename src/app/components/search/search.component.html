@@ -7,14 +7,16 @@
   <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
 
   <ul class="user-list">
-    <li *ngFor="let user of searchResults" (click)="getUserId(user?.id)">
-      <div class="user-info">
-        <img [src]="user?.profile?.icon?.url ?? ''" alt="">
-        <div class="user-details">
-          <span>{{ user.profile.displayName }}</span>
-          <p>@{{ user.username }}</p>
+    <div *ngFor="let user of searchResults" (click)="getUserId(user?.id)">
+      <li *ngIf="authUser.id != user?.id">
+        <div class="user-info">
+          <img [src]="user?.profile?.icon?.url ?? ''" alt="">
+          <div class="user-details">
+            <span>{{ user.profile.displayName }}</span>
+            <p>@{{ user.username }}</p>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </div>
   </ul>
 </div>

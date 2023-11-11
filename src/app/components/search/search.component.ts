@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/api/users.service';
 import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Router } from "@angular/router";
+import { getFromLocalStorage } from 'src/utils/local-storage.util';
 
 @Component({
   selector: 'app-search',
@@ -13,6 +14,7 @@ export class SearchComponent {
   searchQuery: string = '';
   searchResults: any[] = [];
   userFilter: any;
+  authUser: any;
 
   loading: boolean = false;
   private searchQuerySubject = new Subject<string>();
@@ -43,6 +45,10 @@ export class SearchComponent {
         this.searchResults = res.result;
         this.loading = false;
       });
+  }
+
+  ngOnInit(): void {
+    this.authUser = getFromLocalStorage('me_%sesoftuni%');
   }
 
   onSearchInput() {
