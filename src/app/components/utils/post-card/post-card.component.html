@@ -1,7 +1,7 @@
 <div class="card-feed" (click)="redirectToPost($event)">
   <div class="post-header">
     <div (click)="redirectToUser(userId)" class="user-avatar">
-      <img src="{{profilePicture}}" alt="">
+      <img *ngIf="profilePicture" src="{{profilePicture}}" alt="">
     </div>
     <div class="card-action-container">
       <div class="user-info">
@@ -12,7 +12,8 @@
         <div class="post-time">{{formatRelativeTime(createdAt)}}</div>
       </div>
       <div>
-        <button *ngIf="authUser.id == userId" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <button *ngIf="authUser.id == userId" mat-icon-button [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">

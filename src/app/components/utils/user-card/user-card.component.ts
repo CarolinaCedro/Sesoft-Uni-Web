@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent {
-  @Input() profilePicture: string = '';
+  @Input() profilePicture: string | undefined = '';
   @Input() displayName: string = '';
   @Input() followersCount: number = 0;
   @Input() followingsCount: number = 0;
