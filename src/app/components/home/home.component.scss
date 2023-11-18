@@ -122,6 +122,24 @@ a {
   margin: 0;
 }
 
+.follow-button-check {
+  //background-color: #55ae6f;
+  background-color:#FFBB55;
+  color: #fff;
+  text-align: center;
+  border: none;
+
+  border-radius: 5px;
+  padding: 4px 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  i{
+    font-size: 1rem;
+  }
+}
+
+
 .follow-button {
   background-color: #3270B4;
   color: #fff;
@@ -129,8 +147,8 @@ a {
   border: none;
 
   border-radius: 5px;
-  padding: 7px 7px;
-  font-size: 16px;
+  padding: 4px 4px;
+  font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s;
   i{
@@ -139,7 +157,7 @@ a {
 }
 
 .follow-button i {
-  margin-right: 5px;
+  margin: .1rem;
 }
 
 .follow-button:hover {
@@ -400,6 +418,51 @@ a {
       color: #FB5;
     }
 
+  }
+
+  .follow-button-check {
+    //background-color: #55ae6f;
+    background-color: #FFBB55;
+    color: #fff;
+    text-align: center;
+    border: none;
+
+    border-radius: 5px;
+    padding: 4px 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    i {
+      font-size: 1rem;
+    }
+  }
+
+
+  .follow-button {
+    background-color: #3270B4;
+    color: #fff;
+    text-align: center;
+    border: none;
+
+    border-radius: 5px;
+    padding: 4px 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    i {
+      font-size: 1rem;
+    }
+  }
+
+  .follow-button i {
+    //margin-right: 5px;
+    margin: .1rem;
+  }
+
+  .follow-button:hover {
+    background-color: #2980b9;
   }
 
 

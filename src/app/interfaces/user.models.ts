@@ -8,7 +8,7 @@ export class User {
   }
   username: string
 
-  following?: boolean
+  following: boolean
 
 
   constructor(id: string, email: string, profile: {

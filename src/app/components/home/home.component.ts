@@ -7,7 +7,6 @@ import {PostService} from "../../post.service";
 import {getFromLocalStorage, removeToLocalStorage} from 'src/utils/local-storage.util';
 import {UserService} from "../../services/api/users.service";
 import {User} from "../../interfaces/user.models";
-import {BehaviorSubject, tap} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 
@@ -23,7 +22,7 @@ export class HomeComponent implements OnInit {
   likes!: number;
   coments!: number;
 
-  user: User[] = []
+  users: User[] = []
 
 
 
@@ -35,7 +34,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllUsersFollow()
+    // this.getMyAllFollowers()
+    this.getStatusOnBtn()
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
   }
 
@@ -45,26 +45,40 @@ export class HomeComponent implements OnInit {
     removeToLocalStorage('token_%sesoftuni%');
   }
 
-  getAllUsersFollow() {
+  getMyAllFollowers() {
+    this.userService.getAllUsers().subscribe(
+      res => {
+        console.log("res", res);
+        this.users = res?.result.slice(0, 6);
+      }
+    );
+  }
+
+
+  getStatusOnBtn() {
     this.userService.getAllUsers().subscribe(
       res => {
         console.log("todos os usuários", res);
         const allUsers = res?.result;
 
-        // Chame o método para obter os usuários que você está seguindo
         this.userService.getFollowingUsers().subscribe(
           followingUsers => {
             console.log("usuários que estou seguindo", followingUsers?.result);
 
-            // Filtre os usuários para obter aqueles que você ainda não está seguindo
-            this.user = allUsers.filter((user: { id: any; }) =>
-              !followingUsers?.result.some((followingUser: { id: any; }) => followingUser.id === user.id)
-            ).slice(0, 5);
+            // Filtrando os usuários para pegar só o que eu não sigo
+            this.users = allUsers.map((user: User) => {
+              const isFollowing = followingUsers?.result.some((followingUser: { id: any; }) => followingUser.id === user.id);
+              return new User(user.id, user.email, user.profile, user.username, isFollowing);
+            });
+
+            // Limitando a lista
+            this.users = this.users.slice(0, 6);
           }
         );
       }
     );
   }
+
 
 
   openDialog() {
@@ -73,52 +87,17 @@ export class HomeComponent implements OnInit {
 
 
   onFollow(user: User) {
-    console.log("aqui o user", user);
-
-    if (user.following) {
-      this.userService.unfollow(user.id).subscribe(
-        tap((res) => {
-          console.log("Unfollow", res);
-          this.openSnackBar(`Deixou de seguir ${user.username}`);
-          user.following = false;
-
-          // Recarregar a lista após deixar de seguir
-          this.reloadUserList();
-        })
-      );
-    } else {
-      // Lógica para seguir o usuário
-      this.userService.follow(user.id).subscribe(
-        tap((res) => {
-          this.reloadUserList();
-          console.log("Seguindo", res);
-          this.openSnackBar(`Seguindo ${user.username}`);
-          user.following = true;
-
-          // Remover o usuário da lista após seguir com sucesso
-          this.user = this.user.filter(u => u.id !== user.id);
-        })
-      );
-    }
+    this.userService.follow(user.id).subscribe(
+      res => {
+        user.following = true
+      }
+    );
   }
 
-  reloadUserList() {
-    this.userService.getAllUsers().subscribe(
+  unFollow(user: User) {
+    this.userService.unfollow(user.id).subscribe(
       res => {
-        console.log("todos os usuários", res);
-        const allUsers = res?.result;
-
-        // Chame o método para obter os usuários que você está seguindo
-        this.userService.getFollowingUsers().subscribe(
-          followingUsers => {
-            console.log("usuários que estou seguindo", followingUsers?.result);
-
-            // Filtre os usuários para obter aqueles que você ainda não está seguindo
-            this.user = allUsers.filter((user: { id: any; }) =>
-              !followingUsers?.result.some((followingUser: { id: any; }) => followingUser.id === user.id)
-            ).slice(0, 5);
-          }
-        );
+        user.following = false
       }
     );
   }

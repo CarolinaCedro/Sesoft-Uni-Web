@@ -4,6 +4,7 @@
   margin: 0 auto;
   padding: 20px;
   background-color: #F1F5F9;
+  cursor: pointer;
   //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   //text-align: center;
 }
@@ -77,6 +78,22 @@ h1{
 .event .displayName {
   color: #3270B4;
   font-weight: bold;
+}
+
+.follow-button-check {
+  background-color:#FFBB55;
+  color: #fff;
+  text-align: center;
+  border: none;
+
+  border-radius: 5px;
+  padding: 4px 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  i{
+    font-size: 1rem;
+  }
 }
 
 

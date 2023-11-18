@@ -67,13 +67,16 @@
       <div class="friend-header">
         <h4>Conecte-se com Amigos</h4>
       </div>
-      <div class="friend-card" *ngFor="let item of user">
+      <div class="friend-card" *ngFor="let user of users">
         <div class="friend-info">
           <i class="fas fa-user-circle fa-3x"></i>
-          <p>{{item?.profile?.displayName}}</p>
+          <p>{{user?.profile?.displayName}}</p>
         </div>
-        <button class="follow-button" (click)="onFollow(item)">
-          <i class="fas" [ngClass]="{'fa-user-plus': !item.following, 'fa-user-check': item.following}"></i>
+        <button class="follow-button-check"  *ngIf="user.following" (click)="unFollow(user)">
+          <i class="fas fa-user-check" ></i>
+        </button>
+        <button class="follow-button" *ngIf="!user.following" (click)="onFollow(user)">
+          <i class="fas fa-user-plus"></i>
         </button>
       </div>
 

@@ -15,10 +15,11 @@ export class ExplorerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMyFollowers()
+    this.getMyAllFollowers()
+    this.getStatusOnBtn()
   }
 
-  getMyFollowers() {
+  getMyAllFollowers() {
     this.userService.getAllUsers().subscribe(
       res => {
         console.log("res", res)
@@ -27,7 +28,51 @@ export class ExplorerComponent implements OnInit {
     )
   }
 
-  onFollow(item: any) {
-    console.log("teste")
+  getStatusOnBtn() {
+    this.userService.getAllUsers().subscribe(
+      res => {
+        console.log("todos os usuários", res);
+        const allUsers = res?.result;
+
+        this.userService.getFollowingUsers().subscribe(
+          followingUsers => {
+            console.log("usuários que estou seguindo", followingUsers?.result);
+
+            // Filtrando os usuários pra pegar só o que eu n sigo
+            this.users = allUsers.map((user: User) => {
+              const isFollowing = followingUsers?.result.some((followingUser: {
+                id: any;
+              }) => followingUser.id === user.id);
+              return new User(user.id, user.email, user.profile, user.username, isFollowing);
+            });
+
+          }
+        );
+      }
+    );
   }
+
+
+  updateStatus(user: User) {
+    user.following = false;
+  }
+
+  onFollow(user: User) {
+    this.userService.follow(user.id).subscribe(
+      res => {
+        user.following = true
+      }
+    );
+  }
+
+  unFollow(user: User) {
+    this.userService.unfollow(user.id).subscribe(
+      res => {
+        user.following = false
+      }
+    );
+  }
+
+
+
 }

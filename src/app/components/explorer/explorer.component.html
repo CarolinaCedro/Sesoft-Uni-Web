@@ -7,8 +7,12 @@
       <p>Email: {{user?.email}}</p>
       <p>Username: {{user?.username}}</p>
     </div>
-    <button class="follow-button" (click)="onFollow(user)">
-      <i class="fas" [ngClass]="{'fa-user-plus': !user.following, 'fa-user-check': user.following}"></i>
+    <button class="follow-button-check"  *ngIf="user.following" (click)="unFollow(user)">
+      <i class="fas fa-user-check" ></i>
     </button>
+    <button class="follow-button" *ngIf="!user.following" (click)="onFollow(user)">
+      <i class="fas fa-user-plus"></i>
+    </button>
+
   </div>
 </div>

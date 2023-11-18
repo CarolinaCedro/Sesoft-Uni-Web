@@ -58,31 +58,26 @@ export class UserService {
   follow(id: string): Observable<any> {
     const endpoint = `users/${id}/follow`;
     return this.http.post<any>(environment.apiUrl + endpoint, id).pipe(
-      catchError(err => {
-        return throwError(err);
-      }),
-      tap(res => {
-        if (res instanceof Observable) {
-          // Se res for um Observable, faça algo apropriado aqui
-          console.log("Response is an Observable");
-        } else {
-          console.log(res);
-        }
-      })
+      catchError(err => throwError(err))
     );
   }
 
 
+
+
   ///users/{id}/unfollow
+  // No método unfollow no UserService
   unfollow(id: string): Observable<any> {
-    const endpoint = `users/${id}/unfollow`
+    const endpoint = `users/${id}/unfollow`;
     return this.http.post<any>(environment.apiUrl + endpoint, id).pipe(
       catchError(err => {
-        return throwError(err)
+        console.error("Erro ao unfollow:", err); // Adicione este log
+        return throwError(err);
       }),
-      tap(res => console.log(res))
-    )
+      tap(res => console.log("Resposta do unfollow:", res)) // Adicione este log
+    );
   }
+
 
   getFollowingUsers() {
     const endpoint: string = 'users/me/following'
