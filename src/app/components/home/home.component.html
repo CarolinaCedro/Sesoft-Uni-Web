@@ -67,56 +67,17 @@
       <div class="friend-header">
         <h4>Conecte-se com Amigos</h4>
       </div>
-      <div class="friend-card">
+      <div class="friend-card" *ngFor="let item of user">
         <div class="friend-info">
           <i class="fas fa-user-circle fa-3x"></i>
-          <p>Willian</p>
+          <p>{{item?.profile?.displayName}}</p>
         </div>
-
-        <button class="follow-button">
+        <button class="follow-button" (click)="onFollow()">
           <i class="fas fa-user-plus"></i>
         </button>
       </div>
 
-      <div class="friend-card">
-        <div class="friend-info">
-          <i class="fas fa-user-circle fa-3x"></i>
-          <p>Jõao Paraiba</p>
-        </div>
-        <button class="follow-button">
-          <i class="fas fa-user-plus"></i>
-        </button>
-      </div>
-
-      <div class="friend-card">
-        <div class="friend-info">
-          <i class="fas fa-user-circle fa-3x"></i>
-          <p>Carolina Cedro</p>
-        </div>
-        <button class="follow-button">
-          <i class="fas fa-user-plus"></i>
-        </button>
-      </div>
-
-      <div class="friend-card">
-        <div class="friend-info">
-          <i class="fas fa-user-circle fa-3x"></i>
-          <p>Joyce</p>
-        </div>
-        <button class="follow-button">
-          <i class="fas fa-user-plus"></i>
-        </button>
-      </div>
-
-      <div class="friend-card">
-        <div class="friend-info">
-          <i class="fas fa-user-circle fa-3x"></i>
-          <p>Bruna</p>
-        </div>
-        <button class="follow-button">
-          <i class="fas fa-user-plus"></i>
-        </button>
-      </div>
+      <div class="friend-card-look-more"><a>Veja mais</a></div>
     </div>
 
 

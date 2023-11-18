@@ -6,6 +6,7 @@ import {ModalPostComponent} from "../modal-post/modal-post.component";
 import {PostService} from "../../post.service";
 import {getFromLocalStorage, removeToLocalStorage} from 'src/utils/local-storage.util';
 import {UserService} from "../../services/api/users.service";
+import {User} from "../../interfaces/user.models";
 
 
 @Component({
@@ -20,6 +21,8 @@ export class HomeComponent implements OnInit {
   likes!: number;
   coments!: number;
 
+  user: User[] = []
+
 
   constructor(public dialog: MatDialog, private service: PostService,
               private postNotificationService: PostNotificationService,
@@ -28,12 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.service.getAllPosts(0, 100).subscribe(
-    //   res => {
-    //     this.posts = res?.result
-    //   })
     this.getAllUsers()
-
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
   }
 
@@ -46,9 +44,10 @@ export class HomeComponent implements OnInit {
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
       res => {
-        console.log("todos os uses", res)
+        console.log("todos os usuários", res?.result)
+        this.user = res?.result.slice(0, 5);
       }
-    )
+    );
   }
 
 
@@ -57,13 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  handleLike() {
-    this.likes = +1
-    console.log("clicando")
-  }
-
-  handleComents() {
-    this.coments = +1
-    console.log("comentando")
+  onFollow() {
+    console.log("seguindo")
   }
 }
