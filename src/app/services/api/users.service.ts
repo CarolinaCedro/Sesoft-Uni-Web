@@ -47,4 +47,9 @@ export class UserService {
     const endpoint = `users/find/${id}`
     return this.http.get(environment.apiUrl + endpoint).pipe()
   }
+
+  getAllUsers(): Observable<any> {
+    const endpoint: string = 'users'
+    return this.http.get(environment.apiUrl + endpoint).pipe()
+  }
 }

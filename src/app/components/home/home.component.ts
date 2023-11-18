@@ -1,10 +1,11 @@
-import { PostNotificationService } from "../listeners/post-notification-service.service";
+import {PostNotificationService} from "../listeners/post-notification-service.service";
 
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
-import { ModalPostComponent } from "../modal-post/modal-post.component";
-import { PostService } from "../../post.service";
-import { getFromLocalStorage, removeToLocalStorage } from 'src/utils/local-storage.util';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {ModalPostComponent} from "../modal-post/modal-post.component";
+import {PostService} from "../../post.service";
+import {getFromLocalStorage, removeToLocalStorage} from 'src/utils/local-storage.util';
+import {UserService} from "../../services/api/users.service";
 
 
 @Component({
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog, private service: PostService,
-    private postNotificationService: PostNotificationService
+              private postNotificationService: PostNotificationService,
+              private userService: UserService
   ) {
   }
 
@@ -30,6 +32,7 @@ export class HomeComponent implements OnInit {
     //   res => {
     //     this.posts = res?.result
     //   })
+    this.getAllUsers()
 
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
   }
@@ -38,6 +41,14 @@ export class HomeComponent implements OnInit {
   singOut() {
     removeToLocalStorage('me_%sesoftuni%');
     removeToLocalStorage('token_%sesoftuni%');
+  }
+
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe(
+      res => {
+        console.log("todos os uses", res)
+      }
+    )
   }
 
 
