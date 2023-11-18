@@ -39,6 +39,26 @@
             [liked]="post?.liked" [profilePicture]="post?.user?.profile?.icon?.url ?? ''"></app-post-card>
         </div>
       </mat-tab>
+
+      <mat-tab label="Seguindo">
+        <div class="explorer-container">
+          <div class="event" *ngFor="let user of users">
+            <img [class]="user?.profile?.icon ? '' : 'fas fa-user'" alt="User Icon">
+            <div class="user-info">
+              <p class="displayName">{{user?.profile?.displayName}}</p>
+              <p>Email: {{user?.email}}</p>
+              <p>Username: {{user?.username}}</p>
+            </div>
+            <button class="follow-button-check" *ngIf="user.following" (click)="unFollow(user)">
+              <i class="fas fa-user-check"></i>
+            </button>
+            <button class="follow-button" *ngIf="!user.following" (click)="onFollow(user)">
+              <i class="fas fa-user-plus"></i>
+            </button>
+
+          </div>
+        </div>
+      </mat-tab>
     </mat-tab-group>
   </div>
 </div>
