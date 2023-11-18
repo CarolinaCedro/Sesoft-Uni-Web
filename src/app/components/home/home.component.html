@@ -72,12 +72,12 @@
           <i class="fas fa-user-circle fa-3x"></i>
           <p>{{item?.profile?.displayName}}</p>
         </div>
-        <button class="follow-button" (click)="onFollow()">
-          <i class="fas fa-user-plus"></i>
+        <button class="follow-button" (click)="onFollow(item)">
+          <i class="fas" [ngClass]="{'fa-user-plus': !item.following, 'fa-user-check': item.following}"></i>
         </button>
       </div>
 
-      <div class="friend-card-look-more"><a>Veja mais</a></div>
+      <div class="friend-card-look-more" [routerLink]="['explorer']"><a>Veja mais</a></div>
     </div>
 
 

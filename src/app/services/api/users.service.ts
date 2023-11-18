@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
+import {catchError, Observable, tap, throwError} from "rxjs";
 import {environment} from 'src/environments/environment';
-import {User} from "../../interfaces/user.models";
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +50,42 @@ export class UserService {
 
   getAllUsers(): Observable<any> {
     const endpoint: string = 'users'
+    return this.http.get<any>(environment.apiUrl + endpoint).pipe()
+  }
+
+  ///users/me/following
+
+  follow(id: string): Observable<any> {
+    const endpoint = `users/${id}/follow`;
+    return this.http.post<any>(environment.apiUrl + endpoint, id).pipe(
+      catchError(err => {
+        return throwError(err);
+      }),
+      tap(res => {
+        if (res instanceof Observable) {
+          // Se res for um Observable, faça algo apropriado aqui
+          console.log("Response is an Observable");
+        } else {
+          console.log(res);
+        }
+      })
+    );
+  }
+
+
+  ///users/{id}/unfollow
+  unfollow(id: string): Observable<any> {
+    const endpoint = `users/${id}/unfollow`
+    return this.http.post<any>(environment.apiUrl + endpoint, id).pipe(
+      catchError(err => {
+        return throwError(err)
+      }),
+      tap(res => console.log(res))
+    )
+  }
+
+  getFollowingUsers() {
+    const endpoint: string = 'users/me/following'
     return this.http.get<any>(environment.apiUrl + endpoint).pipe()
   }
 }

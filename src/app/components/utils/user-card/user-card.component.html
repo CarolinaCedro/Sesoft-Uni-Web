@@ -25,18 +25,18 @@
     <mat-tab-group>
       <mat-tab label="Postagens">
         <div class="tab-content" *ngFor="let post of posts">
-          <app-post-card [id]="post.id" [content]="post.content" [createdAt]="post.createdAt"
-            [updatedAt]="post.updatedAt" [userId]="post.userId" [repliesCount]="post.repliesCount"
-            [likesCount]="post.likesCount" [username]="post.user.username" [displayName]="post.user.profile.displayName"
-            [liked]="post.liked" [profilePicture]="post.user?.profile?.icon?.url ?? ''"></app-post-card>
+          <app-post-card [id]="post?.id" [content]="post?.content" [createdAt]="post?.createdAt"
+            [updatedAt]="post?.updatedAt" [userId]="post?.userId" [repliesCount]="post?.repliesCount"
+            [likesCount]="post?.likesCount" [username]="post?.user?.username" [displayName]="post?.user?.profile?.displayName"
+            [liked]="post.liked" [profilePicture]="post?.user?.profile?.icon?.url ?? ''"></app-post-card>
         </div>
       </mat-tab>
       <mat-tab label="Curtidas">
         <div class="tab-content" *ngFor="let post of likedPosts">
-          <app-post-card [id]="post.id" [content]="post.content" [createdAt]="post.createdAt"
-            [updatedAt]="post.updatedAt" [userId]="post.userId" [repliesCount]="post.repliesCount"
-            [likesCount]="post.likesCount" [username]="post.user.username" [displayName]="post.user.profile.displayName"
-            [liked]="post.liked" [profilePicture]="post.user?.profile?.icon?.url ?? ''"></app-post-card>
+          <app-post-card [id]="post?.id" [content]="post?.content" [createdAt]="post?.createdAt"
+            [updatedAt]="post?.updatedAt" [userId]="post?.userId" [repliesCount]="post?.repliesCount"
+            [likesCount]="post?.likesCount" [username]="post?.user?.username" [displayName]="post?.user?.profile?.displayName"
+            [liked]="post?.liked" [profilePicture]="post?.user?.profile?.icon?.url ?? ''"></app-post-card>
         </div>
       </mat-tab>
     </mat-tab-group>

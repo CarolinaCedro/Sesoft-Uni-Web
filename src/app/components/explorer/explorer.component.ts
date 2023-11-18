@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../services/api/users.service";
+import {User} from "../../interfaces/user.models";
 
 @Component({
   selector: 'app-explorer',
@@ -6,6 +8,11 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./explorer.component.scss']
 })
 export class ExplorerComponent implements OnInit {
+
+  user: User[] = []
+
+
+
   events = [
     {
       title: 'Evento 1',
@@ -27,9 +34,17 @@ export class ExplorerComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
+  }
+
+  getMyFollowers() {
+    this.userService.getFollowingUsers().subscribe(
+      res => {
+        console.log("res", res)
+      }
+    )
   }
 }
