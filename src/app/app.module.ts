@@ -38,6 +38,8 @@ import { LoadingSpinnerComponent } from './components/utils/loading-spinner/load
 import { UsersProfileComponent } from './components/users-profile/users-profile.component';
 import { UserCardComponent } from './components/utils/user-card/user-card.component';
 import { ColumExplorerComponent } from './components/home/colum-explorer/colum-explorer/colum-explorer.component';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { EmojiComponent } from './components/utils/emoji/emoji.component';
 
 @NgModule({
   declarations: [
@@ -60,8 +62,10 @@ import { ColumExplorerComponent } from './components/home/colum-explorer/colum-e
     UsersProfileComponent,
     UserCardComponent,
     ColumExplorerComponent,
+    EmojiComponent,
   ],
   imports: [
+    PickerComponent,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

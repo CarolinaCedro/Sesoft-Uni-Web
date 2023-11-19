@@ -4,6 +4,19 @@
     <h1 mat-dialog-title>O que está pensando agora ?</h1>
     <div class="dialog-container">
       <p>
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Compartilhe com seus amigos</mat-label>-->
+<!--          <textarea-->
+<!--            matInput-->
+<!--            cdkTextareaAutosize-->
+<!--            #autosize="cdkTextareaAutosize"-->
+<!--            formControlName="content"-->
+<!--            cdkAutosizeMinRows="1"-->
+<!--            cdkAutosizeMaxRows="5"-->
+<!--          >-->
+<!--          </textarea>-->
+<!--        </mat-form-field>-->
+
         <mat-form-field appearance="outline">
           <mat-label>Compartilhe com seus amigos</mat-label>
           <textarea
@@ -13,16 +26,27 @@
             formControlName="content"
             cdkAutosizeMinRows="1"
             cdkAutosizeMaxRows="5"
-          >
-          </textarea>
+          ></textarea>
         </mat-form-field>
+
+        <emoji-mart></emoji-mart>
+
+
       </p>
     </div>
     <div class="container-operations">
+      <ng-template [ngIf]="isFile">
+        <small>
+          <i class="far fa-image"></i>
+          {{fileName}}
+        </small>
+      </ng-template>
+
       <label class="custom-file-upload">
         <i class="far fa-image"></i>
         <i class="fa-regular fa-face-smile"></i>
         <input type="file" (change)="handleFileInput($event)">
+
       </label>
 
 

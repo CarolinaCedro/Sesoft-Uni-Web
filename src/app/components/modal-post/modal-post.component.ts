@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from "../../post.service";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatDialogRef } from "@angular/material/dialog";
-import { PostNotificationService } from "../listeners/post-notification-service.service";
+import {Component, OnInit} from '@angular/core';
+import {PostService} from "../../post.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialogRef} from "@angular/material/dialog";
+import {PostNotificationService} from "../listeners/post-notification-service.service";
 
 @Component({
   selector: 'app-modal-post',
@@ -12,6 +12,9 @@ import { PostNotificationService } from "../listeners/post-notification-service.
 })
 export class ModalPostComponent implements OnInit {
   form: FormGroup
+
+  isFile: boolean = false
+  fileName: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -26,9 +29,20 @@ export class ModalPostComponent implements OnInit {
   }
 
   handleFileInput(event: any): void {
-    const selectedFile = event.target.files[0];
+    const selectedFile: File = event.target.files[0];
+
+    if (selectedFile) {
+      this.uploadFile(selectedFile);
+    }
   }
 
+  uploadFile(file: File): void {
+    if (file) {
+      this.isFile = true
+      this.fileName = file.name
+    }
+    console.log("file -> ", file.name)
+  }
 
   ngOnInit(): void {
   }
