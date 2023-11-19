@@ -70,6 +70,19 @@ export class ModalPostComponent implements OnInit {
   }
 
   openCarEmoji() {
-    this.showCardEmoji = true;
+    this.showCardEmoji = !this.showCardEmoji;
   }
+
+  emoji($event: any) {
+    console.log("emoki", $event)
+    const emojiValue = $event.emoji.native;
+    const contentControl = this.form.get('content');
+
+    if (contentControl) {
+      contentControl.setValue(`${contentControl.value || ''} ${emojiValue}`);
+    }
+
+    this.showCardEmoji = false;
+  }
+
 }

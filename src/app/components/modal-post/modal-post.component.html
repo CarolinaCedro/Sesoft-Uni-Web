@@ -15,6 +15,7 @@
             cdkAutosizeMaxRows="5"
           ></textarea>
         </mat-form-field>
+
       </p>
     </div>
     <div class="container-operations">
@@ -27,7 +28,7 @@
 
       <ng-template [ngIf]="showCardEmoji">
         <div class="emoji-container">
-          <emoji-mart></emoji-mart>
+        <emoji-mart (emojiClick)="emoji($event)"></emoji-mart>
         </div>
       </ng-template>
 
