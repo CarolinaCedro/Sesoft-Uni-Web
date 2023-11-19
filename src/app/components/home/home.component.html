@@ -29,62 +29,9 @@
       <app-btn-global [titleButton]="'Post'" [buttonWidth]="'15%'" (click)="openDialog()"
         [buttonPadding]="'.7rem 1rem'"></app-btn-global>
     </div>
-    <div class="teste">
+    <div class="pdd">
       <router-outlet></router-outlet>
-
     </div>
-
-
   </div>
-  <div class="columExplorer">
-    <h4>Explore nossa faculdade</h4>
-    <div class="links-container">
-      <ul>
-        <li>
-          <a href="https://www.unirv.edu.br/index.php" target="_blank">Universidade de Rio Verde</a>
-        </li>
-
-        <li>
-          <a href="https://www.unirv.edu.br/vestibular.php" target="_blank">Vestibular 2023</a>
-        </li>
-
-        <li>
-          <a href="https://www.unirv.edu.br/vestibular.php" target="_blank">Calendário Acadêmico</a>
-        </li>
-
-
-      </ul>
-    </div>
-
-    <div>
-      <h4>Conheça nossa Faculdade</h4>
-      <div class="container-faculdade">
-        <img src="assets/unirv.jpg" alt="">
-      </div>
-    </div>
-
-    <div class="friend-container">
-      <div class="friend-header">
-        <h4>Conecte-se com Amigos</h4>
-      </div>
-      <div class="friend-card" *ngFor="let user of users">
-        <div class="friend-info">
-          <i class="fas fa-user-circle fa-3x"></i>
-          <p>{{user?.profile?.displayName}}</p>
-        </div>
-        <button class="follow-button-check"  *ngIf="user.following" (click)="unFollow(user)">
-          <i class="fas fa-user-check" ></i>
-        </button>
-        <button class="follow-button" *ngIf="!user.following" (click)="onFollow(user)">
-          <i class="fas fa-user-plus"></i>
-        </button>
-      </div>
-
-      <div class="friend-card-look-more" [routerLink]="['explorer']"><a>Veja mais</a></div>
-    </div>
-
-
-  </div>
-
-
+  <app-colum-explorer></app-colum-explorer>
 </section>

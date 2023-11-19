@@ -37,6 +37,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { LoadingSpinnerComponent } from './components/utils/loading-spinner/loading-spinner.component';
 import { UsersProfileComponent } from './components/users-profile/users-profile.component';
 import { UserCardComponent } from './components/utils/user-card/user-card.component';
+import { ColumExplorerComponent } from './components/home/colum-explorer/colum-explorer/colum-explorer.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { UserCardComponent } from './components/utils/user-card/user-card.compon
     LoadingSpinnerComponent,
     UsersProfileComponent,
     UserCardComponent,
+    ColumExplorerComponent,
   ],
   imports: [
     BrowserModule,
