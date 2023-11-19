@@ -21,6 +21,8 @@ export class UserCardComponent implements OnInit {
 
   users: User[] = []
 
+  followers: [] = []
+
   constructor(private userService: UserService) {
   }
 
@@ -70,6 +72,7 @@ export class UserCardComponent implements OnInit {
     );
   }
 
+
   unFollow(user: User) {
     this.userService.unfollow(user.id).subscribe(
       res => {
@@ -77,4 +80,12 @@ export class UserCardComponent implements OnInit {
       }
     );
   }
+
+  // getFollowers() {
+  //   this.userService.getFollowingUsers().subscribe()
+  // }
+  //
+  // isFollowing(): boolean {
+  //
+  // }
 }
