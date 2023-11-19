@@ -13,8 +13,10 @@ import {PostNotificationService} from "../listeners/post-notification-service.se
 export class ModalPostComponent implements OnInit {
   form: FormGroup
 
+
   isFile: boolean = false
   fileName: string = '';
+  showCardEmoji: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -67,4 +69,7 @@ export class ModalPostComponent implements OnInit {
     });
   }
 
+  openCarEmoji() {
+    this.showCardEmoji = true;
+  }
 }

@@ -4,19 +4,6 @@
     <h1 mat-dialog-title>O que está pensando agora ?</h1>
     <div class="dialog-container">
       <p>
-<!--        <mat-form-field appearance="outline">-->
-<!--          <mat-label>Compartilhe com seus amigos</mat-label>-->
-<!--          <textarea-->
-<!--            matInput-->
-<!--            cdkTextareaAutosize-->
-<!--            #autosize="cdkTextareaAutosize"-->
-<!--            formControlName="content"-->
-<!--            cdkAutosizeMinRows="1"-->
-<!--            cdkAutosizeMaxRows="5"-->
-<!--          >-->
-<!--          </textarea>-->
-<!--        </mat-form-field>-->
-
         <mat-form-field appearance="outline">
           <mat-label>Compartilhe com seus amigos</mat-label>
           <textarea
@@ -28,10 +15,6 @@
             cdkAutosizeMaxRows="5"
           ></textarea>
         </mat-form-field>
-
-        <emoji-mart></emoji-mart>
-
-
       </p>
     </div>
     <div class="container-operations">
@@ -42,18 +25,23 @@
         </small>
       </ng-template>
 
+      <ng-template [ngIf]="showCardEmoji">
+        <div class="emoji-container">
+          <emoji-mart></emoji-mart>
+        </div>
+      </ng-template>
+
+
+
       <label class="custom-file-upload">
         <i class="far fa-image"></i>
-        <i class="fa-regular fa-face-smile"></i>
         <input type="file" (change)="handleFileInput($event)">
-
       </label>
+      <i class="fa-regular fa-face-smile" (click)="openCarEmoji()"></i>
 
 
       <app-btn-global [buttonPadding]="'.5rem .3rem'" [titleButton]="'Publicar'"
                       [buttonWidth]="'40%'" (click)="handlePostagem(form)"></app-btn-global>
-
-
     </div>
   </form>
 

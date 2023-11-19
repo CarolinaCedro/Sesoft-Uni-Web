@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-emoji',
@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class EmojiComponent {
 
+  addEmoji($event: any) {
+    console.log($event)
+  }
 }
