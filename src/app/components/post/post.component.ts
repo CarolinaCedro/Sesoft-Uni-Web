@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from 'src/app/post.service';
+import { PostService } from 'src/app/services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { formatRelativeTime } from 'src/utils/datetime.util';
 import { FormBuilder, FormGroup } from '@angular/forms';

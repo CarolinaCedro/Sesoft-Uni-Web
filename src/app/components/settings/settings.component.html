@@ -1,12 +1,7 @@
 <div class="settings-container">
   <h1>Configurações</h1>
-  <div class="settings-item">
-    <p>Opção 1: <input type="checkbox"></p>
-  </div>
-  <div class="settings-item">
-    <p>Opção 2: <input type="checkbox"></p>
-  </div>
-  <div class="settings-item">
-    <p>Opção 3: <input type="checkbox"></p>
+  <div>
+    <h4>Dark mode</h4>
+    <mat-slide-toggle [(ngModel)]="isDarkMode" (change)="toggleBg()"></mat-slide-toggle>
   </div>
 </div>

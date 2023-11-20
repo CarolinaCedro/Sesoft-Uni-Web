@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { PostService } from 'src/app/post.service';
+import { PostService } from 'src/app/services/post.service';
 import { formatRelativeTime } from 'src/utils/datetime.util';
 import { PostNotificationService } from '../../listeners/post-notification-service.service';
 import { getFromLocalStorage } from 'src/utils/local-storage.util';

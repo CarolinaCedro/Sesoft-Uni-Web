@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../../post.service";
+import {PostService} from "../../services/post.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialogRef} from "@angular/material/dialog";

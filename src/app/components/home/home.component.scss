@@ -1,11 +1,13 @@
-section {
+.container-home {
   display: grid;
   grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
   grid-gap: 20px;
   margin: 0 10rem;
   height: 100vh;
-  background: #F1F5F9;
+  background: white;
+
 }
+
 
 a {
   color: black;
@@ -15,7 +17,6 @@ a {
 
 .columConfig {
   background: #F1F5F9;
-  border-right: 5px solid white;
   padding: 20px;
   position: sticky;
   top: 0;
@@ -25,7 +26,7 @@ a {
 
 .columFeed {
   background: #F1F5F9;
-  padding: 20px 0;
+  padding: 20px 1rem;
   overflow-y: auto;
 }
 
@@ -174,6 +175,7 @@ a {
   width: 100%;
   height: auto;
   background: white;
+  //background: red;
   padding: 1rem;
   color: #333333;
   border: 1px solid #e5dcdc;

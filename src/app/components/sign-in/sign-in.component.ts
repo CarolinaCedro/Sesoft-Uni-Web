@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { SesoftService } from "../../sesoft.service";
+import { SesoftService } from "../../services/sesoft.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { saveToLocalStorage } from 'src/utils/local-storage.util';

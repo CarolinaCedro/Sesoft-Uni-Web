@@ -3,7 +3,7 @@ import {PostNotificationService} from "../listeners/post-notification-service.se
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ModalPostComponent} from "../modal-post/modal-post.component";
-import {PostService} from "../../post.service";
+import {PostService} from "../../services/post.service";
 import {getFromLocalStorage, removeToLocalStorage} from 'src/utils/local-storage.util';
 import {UserService} from "../../services/api/users.service";
 import {User} from "../../interfaces/user.models";
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-
-
-
+  toogleBg() {
+    document.body.classList.toggle("dark-theme")
+  }
 }

@@ -2,6 +2,150 @@
 
 @import '@ctrl/ngx-emoji-mart/picker';
 
+:root {
+  --body: #fff;
+  --text-menu: #333333;
+  --text-body: #4b4b4b;
+  --bg-white: #F1F5F9;
+  --border-white: #F1F5F9;
+  --border-dark: #4b4b4b;
+}
+
+:root .dark-theme {
+  --body: #15202B;
+  --text-menu: #f7f9f9;
+  --text-body: #fff;
+
+  h1, h2, h3, h4, h5, small, p, a, li, ul {
+    color: #f7f9f9;
+  }
+
+  ul li a {
+    color: #f7f9f9;
+
+  }
+
+  i {
+    color: #f7f9f9;
+  }
+
+  .container-home {
+    background: #15202B;
+  }
+
+  .columExplorer {
+    background: #15202B;
+    border-left: 0.2px solid #f7f9f9;
+    border-right: 0.2px solid #f7f9f9;
+  }
+
+  .columConfig {
+    background: #15202B;
+    border-left: 0.5px solid #f7f9f9;
+    border-right: 0.5px solid #f7f9f9;
+  }
+
+  .card-feed {
+    background: #15202B;
+    border-left: 0.5px solid #f7f9f9;
+    border-right: 0.5px solid #f7f9f9;
+  }
+
+  .card-feed:hover {
+    background: #15202B;
+    border: 1px solid #f7f9f9;
+  }
+
+  .header-home {
+    background: #15202B;
+    border-left: 0.5px solid #f7f9f9;
+    border-right: 0.5px solid #f7f9f9;
+    color: #f7f9f9;
+  }
+
+  .columFeed {
+    background: #15202B;
+    border-left: 0.5px solid #f7f9f9;
+    border-right: 0.5px solid #f7f9f9;
+    color: #f7f9f9;
+    padding: 1rem;
+
+  }
+
+  .settings-container{
+    background: #15202B;
+    border: 1px solid #f7f9f9;
+    color: #f7f9f9;
+  }
+  .content {
+    color: #f7f9f9;
+    //background: red;
+  }
+
+  .dialog-container{
+    background: #15202B;
+    color: #f7f9f9;
+    textarea{
+      color: #f7f9f9;
+    }
+
+    mat-label{
+      color: #f7f9f9;
+    }
+
+
+  }
+
+  .modal-container{
+    background: #15202B;
+    color: #f7f9f9;
+  }
+
+  .explorer-container {
+    background: #15202B;
+    color: #f7f9f9;
+
+    .event {
+      background: #15202B;
+      border: 0.5px solid #f7f9f9;
+      color: #f7f9f9;
+    }
+  }
+
+  .profile-container{
+    background: #15202B;
+    border: 0.5px solid #f7f9f9;
+
+    .profile-content{
+      color: #f7f9f9;
+
+      .mat-tab{
+        color: #f7f9f9;
+      }
+    }
+
+  }
+
+  .search-container{
+    background: #15202B;
+    .user-list{
+      color: #f7f9f9;
+      background: #15202B;
+      li {
+        color: #f7f9f9;
+        background: #15202B;
+      }
+
+      ul li{
+        color: #f7f9f9;
+      }
+
+    }
+
+  }
+}
+
+
 * {
   padding: 0;
   margin: 0;
@@ -10,6 +154,8 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+  background-color: var(--body);
+  color: #333333;
 }
 
 
