@@ -5,6 +5,8 @@ import { PostService } from 'src/app/post.service';
 import { formatRelativeTime } from 'src/utils/datetime.util';
 import { PostNotificationService } from '../../listeners/post-notification-service.service';
 import { getFromLocalStorage } from 'src/utils/local-storage.util';
+import { Post } from '../../post/post.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-post-card',
@@ -23,16 +25,22 @@ export class PostCardComponent {
   @Input() username: string = '';
   @Input() displayName: string = '';
   @Input() liked: boolean = false;
+  @Input() replies: Post[] = [];
 
   protected authUser: any;
+  form: FormGroup;
 
   constructor(
     private readonly router: Router,
     private readonly postService: PostService,
     private readonly snackBar: MatSnackBar,
-    private postNotificationService: PostNotificationService
+    private postNotificationService: PostNotificationService,
+    private formBuilder: FormBuilder
   ) {
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
+    this.form = this.formBuilder.group({
+      content: ['']
+    });
   }
 
   formatRelativeTime(datetimePost: string) {

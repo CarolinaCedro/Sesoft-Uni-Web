@@ -3,6 +3,7 @@ import { PostService } from 'src/app/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { formatRelativeTime } from 'src/utils/datetime.util';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/api/users.service';
 
 type User = {
   id: string;
@@ -10,6 +11,7 @@ type User = {
   profile: {
     id: string;
     displayName: string;
+    icon?: any;
   };
 }
 
@@ -42,108 +44,70 @@ export type Post = {
 export class PostComponent implements OnInit {
   protected post = {} as Post;
 
-  protected fakeComments = [
-    {
-      user: {
-        username: 'user1',
-        profile: {
-          displayName: 'User One'
-        }
-      },
-      content: 'Comentário falso 1'
-    },
-    {
-      user: {
-        username: 'user2',
-        profile: {
-          displayName: 'User Two'
-        }
-      },
-      content: 'Comentário falso 2'
-    },
-    {
-      user: {
-        username: 'user3',
-        profile: {
-          displayName: 'User Three'
-        }
-      },
-      content: 'Comentário falso 3'
-    },
-    {
-      user: {
-        username: 'user3',
-        profile: {
-          displayName: 'User Three'
-        }
-      },
-      content: 'Comentário falso 3'
-    },
-    {
-      user: {
-        username: 'user3',
-        profile: {
-          displayName: 'User Three'
-        }
-      },
-      content: 'Comentário falso 3'
-    },
-    {
-      user: {
-        username: 'user3',
-        profile: {
-          displayName: 'User Three'
-        }
-      },
-      content: 'Comentário falso 3'
-    },
-    {
-      user: {
-        username: 'user3',
-        profile: {
-          displayName: 'User Three'
-        }
-      },
-      content: 'Comentário falso 3'
-    },
-  ];
+  user: any;
+
 
   form: FormGroup;
   protected loading = false;
   protected newComment: string = '';
+  public postId: string = '';
 
   constructor(
     private readonly service: PostService,
+    private readonly userService: UserService,
     private readonly route: ActivatedRoute,
     private readonly formBuilder: FormBuilder
   ) {
     this.form = this.formBuilder.group({
       content: ['']
     });
-  }
 
-  addComment() {
-    if (this.newComment.trim() !== '') {
-      this.fakeComments.push({
-        user: {
-          username: 'usuario',
-          profile: {
-            displayName: 'Seu Nome',
-          }
-        },
-        content: this.newComment
+    this.userService.getMe().subscribe(
+      res => {
+        this.user = res;
       });
-
-      this.newComment = '';
-    }
   }
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+  addComment(): void {
+    const formData = this.form.value;
 
-    if (id) {
+    console.log(this.user);
+
+    this.service.reply(this.postId, formData.content).subscribe(
+      reponse => {
+        return this.post.replies.push({
+          content: formData.content,
+          id: reponse.id,
+          createdAt: reponse.createdAt,
+          updatedAt: '',
+          repliesCount: 0,
+          postId: null,
+          userId: '',
+          likesCount: 0,
+          user: {
+            id: '',
+            username: this.user.username,
+            profile: {
+              id: this.user.id,
+              displayName: this.user.profile.displayName,
+              icon: undefined
+            }
+          },
+          replies: [],
+          userLiked: false,
+          files: []
+        });
+      }
+    );
+
+    this.form.reset();
+  }
+  ngOnInit(): void {
+    this.postId = this.route.snapshot.paramMap.get('id') ?? '';
+
+    if (this.postId) {
       this.loading = true;
-      this.service.find(id).subscribe(
+      this.service.find(this.postId).subscribe(
         res => {
           this.post = res;
           this.loading = false;

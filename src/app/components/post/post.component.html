@@ -4,8 +4,8 @@
   <div class="publicacao">
     <div class="user-info">
       <div class="user-avatar">
-        <!-- <img *ngIf="post.user.profile.icon" [src]="post.user.profile.icon" alt="{{post.user.username}}">
-      <i *ngIf="!post.user.profile.icon">{{post.user.username.charAt(0)}}</i> -->
+        <img *ngIf="post.user && post.user.profile && post.user.profile.icon && post.user.profile.icon.url"
+          [src]="post.user.profile.icon.url" alt="{{post.user.username}}">
       </div>
       <div class="user-details">
         <div class="user-display-name">{{post.user.profile.displayName}}</div>
@@ -50,15 +50,15 @@
   </form>
 
   <div class="comments">
-    <div *ngFor="let comment of fakeComments" class="comment">
+    <div *ngFor="let comment of post.replies" class="comment">
       <div class="comment-avatar">
-        <img [src]="'https://via.placeholder.com/48'" alt="Avatar">
+        <!-- <img [src]="'https://via.placeholder.com/48'" alt="Avatar"> -->
       </div>
       <div class="comment-content">
         <div class="comment-username">{{comment.user.profile.displayName}} <span>@{{comment.user.username}}</span></div>
         <p>{{comment.content}}</p>
         <div class="comment-actions">
-          <span>5h ago</span>
+          <span>{{formatRelativeTime(comment.createdAt)}}</span>
         </div>
       </div>
     </div>
