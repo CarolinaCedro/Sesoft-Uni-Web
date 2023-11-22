@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { SesoftService } from "../sesoft.service";
+import { SesoftService } from "../services/sesoft.service";
 
 const LOGIN_URL = ["login"];
 

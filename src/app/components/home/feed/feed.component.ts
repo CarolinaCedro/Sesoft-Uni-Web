@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-import { PostService } from "../../../post.service";
+import { PostService } from "../../../services/post.service";
 import { PostNotificationService } from "../../listeners/post-notification-service.service";
 
 @Component({

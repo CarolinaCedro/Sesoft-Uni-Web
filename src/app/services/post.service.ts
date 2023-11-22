@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { catchError, Observable, tap, throwError } from "rxjs";
-import { PostResponseModel } from "./interfaces/post-response.models";
+import { PostResponseModel } from "../interfaces/post-response.models";
 import { getFromLocalStorage } from 'src/utils/local-storage.util';
 import { environment } from 'src/environments/environment';
-import { Post } from './components/post/post.component';
+import { Post } from '../components/post/post.component';
 
 @Injectable({
   providedIn: 'root'

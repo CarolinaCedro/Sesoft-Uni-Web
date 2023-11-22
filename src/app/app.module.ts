@@ -40,6 +40,7 @@ import { UserCardComponent } from './components/utils/user-card/user-card.compon
 import { ColumExplorerComponent } from './components/home/colum-explorer/colum-explorer/colum-explorer.component';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent } from './components/utils/emoji/emoji.component';
+import {ThemeService} from "./services/theme.service";
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { EmojiComponent } from './components/utils/emoji/emoji.component';
   ],
   providers: [
     PostNotificationService,
+    ThemeService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

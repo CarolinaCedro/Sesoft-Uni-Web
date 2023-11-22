@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { SesoftService } from 'src/app/sesoft.service';
+import { SesoftService } from 'src/app/services/sesoft.service';
 
 @Component({
   selector: 'app-registration-form',

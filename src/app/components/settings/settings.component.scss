@@ -12,8 +12,15 @@
 .settings-item {
   margin: 20px 0;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.settings-item input {
+.settings-item h4 {
+  margin-right: 10px;
+}
+
+mat-slide-toggle {
   margin-left: 10px;
 }
