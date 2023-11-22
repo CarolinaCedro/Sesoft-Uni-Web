@@ -5,9 +5,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {ModalPostComponent} from "../modal-post/modal-post.component";
 import {PostService} from "../../services/post.service";
 import {getFromLocalStorage, removeToLocalStorage} from 'src/utils/local-storage.util';
-import {UserService} from "../../services/api/users.service";
-import {User} from "../../interfaces/user.models";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -22,18 +21,31 @@ export class HomeComponent implements OnInit {
   likes!: number;
   coments!: number;
 
-
-
+  currentRoute: string = ''
 
 
   constructor(public dialog: MatDialog, private service: PostService,
               private postNotificationService: PostNotificationService,
               private snackBar: MatSnackBar,
+              private route: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
+
+    const childSegments = this.route.snapshot.children.map(segment => segment.url[0].path);
+
+    if (childSegments.length > 0) {
+      // Usar o primeiro segmento do path
+      this.currentRoute = childSegments[0];
+    } else {
+      // Se não houver segmentos no path, definir como uma string vazia ou outro valor padrão
+      this.currentRoute = '';
+    }
+
+    console.log(this.currentRoute);
+
   }
 
 
