@@ -88,4 +88,8 @@ export class PostService {
       tap(res => console.log(res))
     )
   }
+
+  reply(postId: string, content: string): Observable<any> {
+    return this.http.post(`${this.url}posts/${postId}/reply`, { content }).pipe();
+  }
 }
