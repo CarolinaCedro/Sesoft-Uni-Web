@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container {
+  margin-top: 16px;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 2px solid #2196F3;
+  border-radius: 4px;
+  color: #2196F3;
+  background-color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.material-icons {
+  margin-right: 8px;
+}

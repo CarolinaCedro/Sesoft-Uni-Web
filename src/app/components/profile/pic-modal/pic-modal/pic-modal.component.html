@@ -1,0 +1,17 @@
+<section class="modal-container">
+  <form>
+    <small>
+      <i mat-dialog-close class="fa-solid fa-x"></i>
+    </small>
+    <div class="dialog-container text-center">
+      <p>
+        <app-upload-dialog-content (fileSelected)="onFileSelected($event)">
+          <label for="fileInput" class="btn btn-primary">
+            <i class="far fa-image"></i>
+            <input type="file" id="fileInput" style="display:none;">
+          </label>
+        </app-upload-dialog-content>
+      </p>
+    </div>
+  </form>
+</section>

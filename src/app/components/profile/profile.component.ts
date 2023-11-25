@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { UserService } from 'src/app/services/api/users.service';
-import { PostNotificationService } from '../listeners/post-notification-service.service';
-import { getFromLocalStorage } from 'src/utils/local-storage.util';
+import {Component} from '@angular/core';
+import {UserService} from 'src/app/services/api/users.service';
+import {PostNotificationService} from '../listeners/post-notification-service.service';
+import {getFromLocalStorage} from 'src/utils/local-storage.util';
+import {MatDialog} from "@angular/material/dialog";
+import {PicModalComponent} from "./pic-modal/pic-modal/pic-modal.component";
 
 export type UserProfile = {
   id: string;
@@ -45,7 +47,7 @@ export class ProfileComponent {
 
   constructor(
     private readonly service: UserService,
-    private readonly postNotificationService: PostNotificationService,
+    private readonly postNotificationService: PostNotificationService
   ) { }
 
   ngOnInit(): void {
@@ -96,4 +98,7 @@ export class ProfileComponent {
         this.likedPosts = res;
       });
   }
+
+
+
 }
