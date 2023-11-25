@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Router } from "@angular/router";
-import { catchError, Observable, tap, throwError } from "rxjs";
-import { PostResponseModel } from "../interfaces/post-response.models";
-import { getFromLocalStorage } from 'src/utils/local-storage.util';
-import { environment } from 'src/environments/environment';
-import { Post } from '../components/post/post.component';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {catchError, Observable, tap, throwError} from "rxjs";
+import {PostResponseModel} from "../interfaces/post-response.models";
+import {getFromLocalStorage} from 'src/utils/local-storage.util';
+import {environment} from 'src/environments/environment';
+import {Post} from '../components/post/post.component';
 
 @Injectable({
   providedIn: 'root'
@@ -53,14 +53,30 @@ export class PostService {
     return this.http.get<PostResponseModel>(`${environment.apiUrl}${this.endpoint}/${id}`, { headers }).pipe();
   }
 
-  createPost(post: PostResponseModel): Observable<any> {
-    return this.http.post(this.url + "posts", post).pipe(
-      catchError(err => {
-        return throwError(err)
+  createPost(post: any): Observable<any> {
+    console.log("aqui os dados que vem pro service", post);
+
+    return this.http.post(this.url + 'posts', post).pipe(
+      catchError((err) => {
+        return throwError(err);
       }),
-      tap(res => console.log(res))
-    )
+      tap((res) => console.log(res))
+    );
   }
+
+
+  uploadProfilePicture(post: FormData): Observable<any> {
+    console.log("UPLOUD aqui os dados que vem pro service", post);
+
+    return this.http.post(this.url + 'users/upload', post).pipe(
+      catchError((err) => {
+        return throwError(err);
+      }),
+      tap((res) => console.log(res))
+    );
+  }
+
+
 
   find(id: string): Observable<Post> {
     return this.http.get<Post>(`${environment.apiUrl}${this.endpoint}/${id}`).pipe();
@@ -92,4 +108,5 @@ export class PostService {
   reply(postId: string, content: string): Observable<any> {
     return this.http.post(`${this.url}posts/${postId}/reply`, { content }).pipe();
   }
+
 }

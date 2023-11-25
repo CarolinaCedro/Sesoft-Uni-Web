@@ -6,13 +6,17 @@
 
 .image-container {
   margin-top: 16px;
-  max-width: 100%;
+  max-width: 400px;
+  max-height: 400px;
+  overflow: hidden;
 }
 
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
+
 
 .btn {
   display: inline-flex;
@@ -20,15 +24,16 @@ img {
   justify-content: center;
   cursor: pointer;
   padding: 8px 16px;
-  border: 2px solid #2196F3;
+  margin-top: 1rem;
+  border: 2px solid #FFBB55;
   border-radius: 4px;
-  color: #2196F3;
+  color: #FFBB55;
   background-color: #fff;
   transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #2196F3;
+  background-color: #FFBB55;
   color: #fff;
 }
 

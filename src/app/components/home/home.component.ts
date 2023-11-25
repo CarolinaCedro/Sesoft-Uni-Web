@@ -7,6 +7,7 @@ import {PostService} from "../../services/post.service";
 import {getFromLocalStorage, removeToLocalStorage} from 'src/utils/local-storage.util';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute} from "@angular/router";
+import {SesoftService} from "../../services/sesoft.service";
 
 
 @Component({
@@ -27,22 +28,22 @@ export class HomeComponent implements OnInit {
   constructor(public dialog: MatDialog, private service: PostService,
               private postNotificationService: PostNotificationService,
               private snackBar: MatSnackBar,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private sesoftService: SesoftService
   ) {
   }
 
   ngOnInit(): void {
+    this.sesoftService.getUser().subscribe(
+      res => {
+        console.log("aqio o user", res),
+          this.authUser = res
+      }
+    )
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
 
     const childSegments = this.route.snapshot.children.map(segment => segment.url[0].path);
 
-    if (childSegments.length > 0) {
-      // Usar o primeiro segmento do path
-      this.currentRoute = childSegments[0];
-    } else {
-      // Se não houver segmentos no path, definir como uma string vazia ou outro valor padrão
-      this.currentRoute = '';
-    }
 
     console.log(this.currentRoute);
 

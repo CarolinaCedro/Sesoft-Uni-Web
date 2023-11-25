@@ -1,12 +1,21 @@
-import { Component, Input } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { PostService } from 'src/app/services/post.service';
-import { formatRelativeTime } from 'src/utils/datetime.util';
-import { PostNotificationService } from '../../listeners/post-notification-service.service';
-import { getFromLocalStorage } from 'src/utils/local-storage.util';
-import { Post } from '../../post/post.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {Component, Input} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
+import {PostService} from 'src/app/services/post.service';
+import {formatRelativeTime} from 'src/utils/datetime.util';
+import {PostNotificationService} from '../../listeners/post-notification-service.service';
+import {getFromLocalStorage} from 'src/utils/local-storage.util';
+import {Post} from '../../post/post.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
+export interface Files {
+  storage:
+    {
+      url: string
+    }
+
+
+}
 
 @Component({
   selector: 'app-post-card',
@@ -26,6 +35,7 @@ export class PostCardComponent {
   @Input() displayName: string = '';
   @Input() liked: boolean = false;
   @Input() replies: Post[] = [];
+  @Input() files: Files[] = [];
 
   protected authUser: any;
   form: FormGroup;
@@ -39,9 +49,12 @@ export class PostCardComponent {
   ) {
     this.authUser = getFromLocalStorage('me_%sesoftuni%');
     this.form = this.formBuilder.group({
-      content: ['']
+      content: [''],
+      files: ['']
     });
   }
+
+
 
   formatRelativeTime(datetimePost: string) {
     return formatRelativeTime(datetimePost);

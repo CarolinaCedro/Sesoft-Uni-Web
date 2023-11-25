@@ -15,35 +15,36 @@
             cdkAutosizeMaxRows="5"
           ></textarea>
         </mat-form-field>
-
       </p>
     </div>
     <div class="container-operations">
       <ng-template [ngIf]="isFile">
         <small>
           <i class="far fa-image"></i>
-          {{fileName}}
+          {{ fileName }}
+          <i class="fas fa-times" (click)="deleteImage()"></i>
         </small>
       </ng-template>
 
       <ng-template [ngIf]="showCardEmoji">
         <div class="emoji-container">
-        <emoji-mart (emojiClick)="emoji($event)"></emoji-mart>
+          <emoji-mart (emojiClick)="emoji($event)"></emoji-mart>
         </div>
       </ng-template>
-
-
 
       <label class="custom-file-upload">
         <i class="far fa-image"></i>
         <input type="file" (change)="handleFileInput($event)">
       </label>
+
       <i class="fa-regular fa-face-smile" (click)="openCarEmoji()"></i>
 
-
-      <app-btn-global [buttonPadding]="'.5rem .3rem'" [titleButton]="'Publicar'"
-                      [buttonWidth]="'40%'" (click)="handlePostagem(form)"></app-btn-global>
+      <app-btn-global
+        [buttonPadding]="'.5rem .3rem'"
+        [titleButton]="'Publicar'"
+        [buttonWidth]="'40%'"
+        (click)="handlePostagem()"
+      ></app-btn-global>
     </div>
   </form>
-
 </section>

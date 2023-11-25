@@ -1,9 +1,14 @@
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div *ngIf="!loading" >
   <div *ngFor="let post of posts">
-    <app-post-card  [id]="post.id" [content]="post.content" [createdAt]="post.createdAt" [updatedAt]="post.updatedAt"
+    <app-post-card [id]="post.id" [content]="post.content" [files]="post?.files" [createdAt]="post.createdAt"
+                   [updatedAt]="post.updatedAt"
       [userId]="post.user.id" [repliesCount]="post.repliesCount" [likesCount]="post.likesCount"
       [username]="post.user.username" [displayName]="post.user.profile.displayName" [liked]="post.liked"
       [profilePicture]="post.user?.profile?.icon?.url ?? ''"></app-post-card>
   </div>
 </div>
+
+
+
+

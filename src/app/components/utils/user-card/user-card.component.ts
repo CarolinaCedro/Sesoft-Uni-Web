@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../../interfaces/user.models";
 import {UserService} from "../../../services/api/users.service";
+import {PicModalComponent} from "../../profile/pic-modal/pic-modal/pic-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-user-card',
@@ -23,7 +25,9 @@ export class UserCardComponent implements OnInit {
 
   followers: [] = []
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              public readonly dialog: MatDialog
+  ) {
   }
 
   ngOnInit(): void {
@@ -88,4 +92,11 @@ export class UserCardComponent implements OnInit {
   // isFollowing(): boolean {
   //
   // }
+  onUpdatePicProfile() {
+    console.log("pegando foto")
+  }
+
+  openDialog() {
+    this.dialog.open(PicModalComponent);
+  }
 }

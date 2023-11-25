@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { catchError, map, Observable, of, throwError } from "rxjs";
-import { Router } from "@angular/router";
-import { saveToLocalStorage } from 'src/utils/local-storage.util';
-import { environment } from 'src/environments/environment';
-import { JwtHelperService } from "@auth0/angular-jwt";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {catchError, map, Observable, of, throwError} from "rxjs";
+import {Router} from "@angular/router";
+import {saveToLocalStorage} from 'src/utils/local-storage.util';
+import {environment} from 'src/environments/environment';
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 export type LoginResponseProps = {
   token: string;
@@ -22,6 +22,10 @@ export type LoginRequestProps = {
 })
 export class SesoftService {
   private TOKEN: string = "token_%sesoftuni%";
+
+  userAuth:any
+
+
   constructor(private http: HttpClient, private route: Router) {
   }
 
@@ -57,6 +61,15 @@ export class SesoftService {
     }
   }
 
+  getUser(): Observable<any> {
+    if (this.userAuth) {
+      return new Observable((observer) => {
+        observer.next(this.userAuth);
+        observer.complete();
+      });
+    }
+    return this.http.get(environment.apiUrl + 'users/me');
+  }
 
   get isLoged(): boolean {
     return this.containsToken();

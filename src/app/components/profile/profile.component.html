@@ -1,6 +1,6 @@
 <section>
   <app-loading-spinner *ngIf="loading" class="loading-spinner"></app-loading-spinner>
-  <app-user-card [profilePicture]="user && user.profile && user.profile.icon ? user.profile.icon.url || '' : ''" [displayName]="user.profile.displayName"
+  <app-user-card [profilePicture]="user && user.profile && user.profile.icon.url ? user.profile.icon.url || '' : ''" [displayName]="user.profile.displayName"
     [followersCount]="user.followersCount" [followingsCount]="user.followingsCount" [username]="user.username"
     [bio]="user.profile.bio ?? ''" [postsCount]="user.postsCount" [posts]="mePosts" [likedPosts]="likedPosts"></app-user-card>
 </section>

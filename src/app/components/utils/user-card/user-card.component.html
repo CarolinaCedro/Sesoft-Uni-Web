@@ -3,6 +3,9 @@
     <div class="profile-picture">
       <img src="{{profilePicture}}" alt="">
     </div>
+    <div class="update-profile" (click)="openDialog()">
+      <small>Alterar foto</small>
+    </div>
     <div class="profile-name">{{displayName}}</div>
     <div class="profile-username">@{{username}}</div>
     <div class="profile-bio" *ngIf="bio">{{bio}}</div>

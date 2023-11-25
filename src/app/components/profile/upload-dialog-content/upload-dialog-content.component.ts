@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {ImageCroppedEvent} from "ngx-image-cropper";
+import {PostService} from "../../../services/post.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialogRef} from "@angular/material/dialog";
+import {PicModalComponent} from "../pic-modal/pic-modal/pic-modal.component";
 
 @Component({
   selector: 'app-upload-dialog-content',
@@ -10,50 +13,63 @@ export class UploadDialogContentComponent {
 
   title = 'angular-image-uploader';
 
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-
-  imageUrl: string | ArrayBuffer | null = null;
+  imageUrl: string = '';
+  hasImage: boolean = false;
+  showBtn: boolean = false;
+  hiddenBtn: boolean = true;
+  formData: FormData = new FormData();
 
   @Output() fileSelected = new EventEmitter<File>();
 
+
+  constructor(private service: PostService,
+              private _snackBar: MatSnackBar,
+              private dialogRef: MatDialogRef<PicModalComponent>,
+  ) {
+  }
+
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
+    console.log("chegando aqui", event.target.files[0])
+    const file: File = event.target.files[0];
+
     if (file) {
-      this.imageUrl = this.getSafeUrl(file);
-      this.fileSelected.emit(file);
+      this.formData.append('file', file);
+
+      this.imageUrl = URL.createObjectURL(file);
+      this.hasImage = true;
+      this.showBtn = true;
+      this.hiddenBtn = false;
+
+
     }
+
+  }
+
+  submit() {
+    this.uploadProfilePicture();
+  }
+
+  private uploadProfilePicture(): void {
+    this.service.uploadProfilePicture(this.formData).subscribe(
+      (response) => {
+        this.openSnackBar('Foto atualizada com sucesso!');
+        this.dialogRef.close('close');
+        console.log(response, "upload feito");
+      },
+      (error) => {
+        console.error('Erro ao atualizar a foto de perfil:', error);
+      }
+    );
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'Fechar', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+    });
   }
 
 
-  private getSafeUrl(file: File): string | ArrayBuffer | null {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.imageUrl = reader.result;
-    };
-    return null;
-  }
 
-
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-  }
-
-  imageLoaded() {
-    // show cropper
-  }
-
-  cropperReady() {
-    // cropper ready
-  }
-
-  loadImageFailed() {
-    // show message
-  }
 
 }

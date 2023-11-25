@@ -26,8 +26,17 @@
     </div>
   </div>
   <div class="content">
-    <p>{{content}}</p>
+    <p>{{ content }}</p>
+    <ng-container *ngIf="files && files.length > 0; else noImage">
+      <div class="card-media">
+        <img [src]="files[0]?.storage?.url">
+      </div>
+    </ng-container>
+    <ng-template #noImage>
+    </ng-template>
   </div>
+
+
   <div class="actions-container">
     <div class="action">
       <i (click)="handleLike()" [ngClass]="liked ? 'fa-solid fa-heart post-liked' : 'fa-solid fa-heart'"></i>

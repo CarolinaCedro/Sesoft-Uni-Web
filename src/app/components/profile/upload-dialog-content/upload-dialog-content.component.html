@@ -1,10 +1,12 @@
 <div class="container">
-  <div *ngIf="imageUrl" class="image-container">
+  <div *ngIf="hasImage" class="image-container">
     <img [src]="imageUrl" alt="Selected Image">
   </div>
-  <label for="fileInput" class="btn btn-primary">
-    <i class="material-icons">image</i>
+  <label for="fileInput" class="btn btn-primary" *ngIf="hiddenBtn">
+    <i class="material-icons"></i>
     Escolher Arquivo
     <input type="file" id="fileInput" (change)="onFileSelected($event)" style="display: none;">
   </label>
+
+ <button *ngIf="showBtn" style="margin-top: 1rem" mat-raised-button color="primary" (click)="submit()">Atualizar foto</button>
 </div>

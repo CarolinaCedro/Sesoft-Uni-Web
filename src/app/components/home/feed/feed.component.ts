@@ -1,7 +1,22 @@
-import { Component } from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
-import { PostService } from "../../../services/post.service";
-import { PostNotificationService } from "../../listeners/post-notification-service.service";
+import {Component} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {PostService} from "../../../services/post.service";
+import {PostNotificationService} from "../../listeners/post-notification-service.service";
+
+
+export interface Post {
+  id: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  repliesCount: number;
+  postId: string | null;
+  userId: string;
+  likesCount: number;
+  files: {
+    url: string;
+  }[];
+}
 
 @Component({
   selector: 'app-feed',
@@ -9,7 +24,7 @@ import { PostNotificationService } from "../../listeners/post-notification-servi
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent {
-  posts: any = []
+  posts: any;
   likes!: number;
   coments!: number;
   loading: boolean = false;

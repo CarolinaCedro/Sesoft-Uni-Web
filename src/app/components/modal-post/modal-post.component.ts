@@ -11,7 +11,12 @@ import {PostNotificationService} from "../listeners/post-notification-service.se
   styleUrls: ['./modal-post.component.scss']
 })
 export class ModalPostComponent implements OnInit {
+
   form: FormGroup
+  formData: FormData = new FormData();
+
+
+  file!: any
 
 
   isFile: boolean = false
@@ -26,41 +31,51 @@ export class ModalPostComponent implements OnInit {
     private postNotificationService: PostNotificationService
   ) {
     this.form = this.fb.group({
-      content: ['', new Validators]
+      content: ['', new Validators],
+      files: ['']
     });
-  }
-
-  handleFileInput(event: any): void {
-    const selectedFile: File = event.target.files[0];
-
-    if (selectedFile) {
-      this.uploadFile(selectedFile);
-    }
-  }
-
-  uploadFile(file: File): void {
-    if (file) {
-      this.isFile = true
-      this.fileName = file.name
-    }
-    console.log("file -> ", file.name)
   }
 
   ngOnInit(): void {
   }
 
-  handlePostagem(form: FormGroup) {
-    this.service.createPost(form.value).subscribe(
-      res => {
-        this.openSnackBar("Postagem criada!")
-        this.postNotificationService.notifyPostCreated();
-        this.dialogRef.close("close")
-      }, error => {
-        this.openSnackBar(error)
-      }
-    )
+  handleFileInput(event: any): void {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      this.isFile = true
+      this.fileName = event.target.files[0].name;
+      console.log("aqui o arquivo", event.target.files[0])
+      this.formData.append('files', selectedFile);
+
+
+    }
+
+    // if (selectedFile) {
+    //   console.log('Arquivo selecionado:', selectedFile);
+    //   console.log('FormData:', this.formData);
+    // }
   }
 
+  deleteImage() {
+    this.fileName = '';
+    this.isFile = false
+  }
+
+  handlePostagem(): void {
+    this.formData.append('content', this.form.get('content')?.value);
+
+    this.service.createPost(this.formData).subscribe(
+      res => {
+        this.openSnackBar('Postagem criada!');
+        this.postNotificationService.notifyPostCreated();
+        this.dialogRef.close('close');
+      },
+      error => {
+        this.openSnackBar(error);
+      }
+    );
+
+  }
 
   openSnackBar(message: string) {
     this._snackBar.open(message, 'Fechar', {
@@ -84,5 +99,6 @@ export class ModalPostComponent implements OnInit {
 
     this.showCardEmoji = false;
   }
+
 
 }
