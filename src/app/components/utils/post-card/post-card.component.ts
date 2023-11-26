@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {PostService} from 'src/app/services/post.service';
@@ -22,7 +22,7 @@ export interface Files {
   templateUrl: './post-card.component.html',
   styleUrls: ['./post-card.component.scss']
 })
-export class PostCardComponent {
+export class PostCardComponent implements OnInit{
   @Input() id: string = '';
   @Input() content: string = '';
   @Input() profilePicture: string = '';
@@ -52,6 +52,13 @@ export class PostCardComponent {
       content: [''],
       files: ['']
     });
+  }
+
+  ngOnInit(): void {
+    this.postService.profileImageChanged.subscribe((imageUrl) => {
+      this.profilePicture = imageUrl;
+    });
+
   }
 
 
@@ -131,4 +138,6 @@ export class PostCardComponent {
       verticalPosition: 'top',
     });
   }
+
+
 }

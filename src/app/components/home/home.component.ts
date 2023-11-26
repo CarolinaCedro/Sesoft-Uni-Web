@@ -8,6 +8,7 @@ import {getFromLocalStorage, removeToLocalStorage} from 'src/utils/local-storage
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute} from "@angular/router";
 import {SesoftService} from "../../services/sesoft.service";
+import {ProfileImageService} from "../../services/profile-image.service";
 
 
 @Component({
@@ -29,15 +30,21 @@ export class HomeComponent implements OnInit {
               private postNotificationService: PostNotificationService,
               private snackBar: MatSnackBar,
               private route: ActivatedRoute,
-              private sesoftService: SesoftService
+              private sesoftService: SesoftService,
+              private profileImageService: ProfileImageService
   ) {
   }
 
   ngOnInit(): void {
+
+    this.service.profileImageChanged.subscribe((imageUrl) => {
+      this.authUser = imageUrl;
+    });
+
     this.sesoftService.getUser().subscribe(
       res => {
         console.log("aqio o user", res),
-          this.authUser = res
+          this.authUser = res?.profile?.icon?.url
       }
     )
     this.authUser = getFromLocalStorage('me_%sesoftuni%');

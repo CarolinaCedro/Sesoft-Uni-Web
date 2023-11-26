@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {catchError, Observable, tap, throwError} from "rxjs";
@@ -6,6 +6,7 @@ import {PostResponseModel} from "../interfaces/post-response.models";
 import {getFromLocalStorage} from 'src/utils/local-storage.util';
 import {environment} from 'src/environments/environment';
 import {Post} from '../components/post/post.component';
+import {User} from "../interfaces/user.models";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ import {Post} from '../components/post/post.component';
 export class PostService {
   private readonly url: string = environment.apiUrl
   private readonly endpoint = 'posts'
+
+  profileImageChanged: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private http: HttpClient, private route: Router) { }
 
@@ -31,6 +34,10 @@ export class PostService {
       tap(res => {
       })
     );
+  }
+
+  notifyProfileImageChanged(imageUrl: string) {
+    this.profileImageChanged.emit(imageUrl);
   }
 
   like(postId: string) {
@@ -65,16 +72,21 @@ export class PostService {
   }
 
 
-  uploadProfilePicture(post: FormData): Observable<any> {
-    console.log("UPLOUD aqui os dados que vem pro service", post);
+  uploadProfilePicture(post: FormData): Observable<User> {
+    console.log("UPLOAD aqui os dados que vem pro service", post);
 
-    return this.http.post(this.url + 'users/upload', post).pipe(
+    return this.http.post<User>(this.url + 'users/upload', post).pipe(
       catchError((err) => {
         return throwError(err);
       }),
-      tap((res) => console.log(res))
+      tap((res) => {
+        console.log("aqui nova image",res?.profile?.icon?.url);
+        // Notificar sobre a mudança de imagem de perfil
+        this.notifyProfileImageChanged(res?.profile?.icon?.url); // Certifique-se de adaptar isso à sua resposta do servidor
+      })
     );
   }
+
 
 
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/api/users.service";
 import {User} from "../../interfaces/user.models";
+import {PostService} from "../../services/post.service";
 
 @Component({
   selector: 'app-explorer',
@@ -10,11 +11,19 @@ import {User} from "../../interfaces/user.models";
 export class ExplorerComponent implements OnInit {
 
   users: User[] = []
+  picProfile: string = ""
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private service: PostService) {
   }
 
   ngOnInit(): void {
+    this.service.profileImageChanged.subscribe((imageUrl) => {
+      this.picProfile = imageUrl;
+    });
+    this.userService.getMe().subscribe(
+      res => {
+        this.picProfile = res?.profile?.icon?.url
+      });
     this.getMyAllFollowers()
     this.getStatusOnBtn()
   }

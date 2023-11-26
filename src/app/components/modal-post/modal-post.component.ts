@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialogRef} from "@angular/material/dialog";
 import {PostNotificationService} from "../listeners/post-notification-service.service";
+import {ProfileImageService} from "../../services/profile-image.service";
 
 @Component({
   selector: 'app-modal-post',
@@ -28,7 +29,8 @@ export class ModalPostComponent implements OnInit {
     private service: PostService,
     private _snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<ModalPostComponent>,
-    private postNotificationService: PostNotificationService
+    private postNotificationService: PostNotificationService,
+    private profileService: ProfileImageService
   ) {
     this.form = this.fb.group({
       content: ['', new Validators],
@@ -37,6 +39,9 @@ export class ModalPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.profileService.profilePicture$.subscribe((url) => {
+      this.file = url;
+    });
   }
 
   handleFileInput(event: any): void {

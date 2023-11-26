@@ -4,6 +4,8 @@ import {PostNotificationService} from '../listeners/post-notification-service.se
 import {getFromLocalStorage} from 'src/utils/local-storage.util';
 import {MatDialog} from "@angular/material/dialog";
 import {PicModalComponent} from "./pic-modal/pic-modal/pic-modal.component";
+import {ProfileImageService} from "../../services/profile-image.service";
+import {PostService} from "../../services/post.service";
 
 export type UserProfile = {
   id: string;
@@ -47,10 +49,15 @@ export class ProfileComponent {
 
   constructor(
     private readonly service: UserService,
-    private readonly postNotificationService: PostNotificationService
+    private readonly postNotificationService: PostNotificationService,
+    private profileImageChanged : PostService
   ) { }
 
   ngOnInit(): void {
+    this.profileImageChanged.profileImageChanged.subscribe((imageUrl) => {
+      this.authUser = imageUrl;
+    });
+
     this.loading = true;
     this.listenerWhenPostWasCreated();
     this.listenerWhenPostWasDeleted();

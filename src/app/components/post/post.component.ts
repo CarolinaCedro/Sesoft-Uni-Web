@@ -51,6 +51,8 @@ export class PostComponent implements OnInit {
   protected loading = false;
   protected newComment: string = '';
   public postId: string = '';
+   picProfile: string = '';
+
 
   constructor(
     private readonly service: PostService,
@@ -65,6 +67,7 @@ export class PostComponent implements OnInit {
     this.userService.getMe().subscribe(
       res => {
         this.user = res;
+        this.picProfile = res?.profile?.icon?.url
       });
   }
 
@@ -103,6 +106,12 @@ export class PostComponent implements OnInit {
     this.form.reset();
   }
   ngOnInit(): void {
+
+    this.service.profileImageChanged.subscribe((imageUrl) => {
+      this.picProfile = imageUrl;
+    });
+
+
     this.postId = this.route.snapshot.paramMap.get('id') ?? '';
 
     if (this.postId) {
@@ -158,5 +167,9 @@ export class PostComponent implements OnInit {
       post.likesCount--;
       post.userLiked = false;
     });
+  }
+
+  deletePost() {
+    console.log("teste")
   }
 }

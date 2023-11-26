@@ -4,7 +4,9 @@ export class User {
   profile: {
     bio:string
     displayName:string
-    icon:string
+    icon:{
+      url:string
+    }
   }
   username: string
 
@@ -14,7 +16,7 @@ export class User {
   constructor(id: string, email: string, profile: {
     bio: string;
     displayName: string;
-    icon: string
+    icon: { url: string }
   }, username: string, following: boolean) {
     this.id = id;
     this.email = email;

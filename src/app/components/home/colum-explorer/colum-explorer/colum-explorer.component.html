@@ -31,7 +31,8 @@
     </div>
     <div class="friend-card" *ngFor="let user of users">
       <div class="friend-info">
-        <i class="fas fa-user-circle fa-3x"></i>
+<!--        <i class="fas fa-user-circle fa-3x"></i>-->
+        <img [src]="user?.profile?.icon?.url ? user?.profile?.icon?.url : 'https://plus.unsplash.com/premium_photo-1683865775631-3283bfaf6508?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fCVDMyVBRGNvbmUlMjBkZSUyMHBlcmZpbHxlbnwwfHwwfHx8MA%3D%3D' ">
         <p>{{user?.profile?.displayName}}</p>
       </div>
       <button class="follow-button-check" *ngIf="user.following" (click)="unFollow(user)">

@@ -4,8 +4,9 @@
   <div class="publicacao">
     <div class="user-info">
       <div class="user-avatar">
-        <img *ngIf="post.user && post.user.profile && post.user.profile.icon && post.user.profile.icon.url"
-          [src]="post.user.profile.icon.url" alt="{{post.user.username}}">
+<!--        <img *ngIf="post.user && post.user.profile && post.user.profile.icon && post.user.profile.icon.url"-->
+        <img
+          [src]="picProfile" alt="{{post.user.username}}">
       </div>
       <div class="user-details">
         <div class="user-display-name">{{post.user.profile.displayName}}</div>
@@ -52,7 +53,7 @@
   <div class="comments">
     <div *ngFor="let comment of post.replies" class="comment">
       <div class="comment-avatar">
-        <!-- <img [src]="'https://via.placeholder.com/48'" alt="Avatar"> -->
+         <img [src]="comment?.user?.profile?.icon?.url" alt="Avatar">
       </div>
       <div class="comment-content">
         <div class="comment-username">{{comment.user.profile.displayName}} <span>@{{comment.user.username}}</span></div>

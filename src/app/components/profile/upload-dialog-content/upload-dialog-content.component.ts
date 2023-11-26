@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
 import {PostService} from "../../../services/post.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialogRef} from "@angular/material/dialog";
 import {PicModalComponent} from "../pic-modal/pic-modal/pic-modal.component";
+import {ProfileImageService} from "../../../services/profile-image.service";
 
 @Component({
   selector: 'app-upload-dialog-content',
@@ -25,6 +26,8 @@ export class UploadDialogContentComponent {
   constructor(private service: PostService,
               private _snackBar: MatSnackBar,
               private dialogRef: MatDialogRef<PicModalComponent>,
+              private profileImageService: ProfileImageService,
+              private cdRef: ChangeDetectorRef
   ) {
   }
 
@@ -54,6 +57,16 @@ export class UploadDialogContentComponent {
       (response) => {
         this.openSnackBar('Foto atualizada com sucesso!');
         this.dialogRef.close('close');
+
+        const newImageUrl = response?.profile?.icon?.url;
+
+
+        // // Notifique sobre a mudança da imagem do perfil usando o serviço existente
+        // this.profileImageService.notifyProfileImageChanged(newImageUrl);
+
+        // Forçar detecção de mudanças manualmente
+        this.cdRef.detectChanges();
+
         console.log(response, "upload feito");
       },
       (error) => {
@@ -61,6 +74,7 @@ export class UploadDialogContentComponent {
       }
     );
   }
+
 
   openSnackBar(message: string) {
     this._snackBar.open(message, 'Fechar', {
