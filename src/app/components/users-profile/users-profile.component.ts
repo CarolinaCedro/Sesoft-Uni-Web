@@ -14,7 +14,14 @@ export class UsersProfileComponent {
 
   activeTab: string = 'postagens';
   loading: boolean = false;
-  user: UserProfile = {} as UserProfile;
+  user: UserProfile = {
+    profile: {
+      displayName: '',
+      icon: {
+        url: ''
+      }
+    }
+  } as UserProfile;
   likedPosts: any;
   posts: any;
 

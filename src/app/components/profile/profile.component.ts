@@ -43,7 +43,14 @@ type UserIconProps = {
 export class ProfileComponent {
   activeTab: string = 'postagens';
   loading: boolean = false;
-  user: UserProfile = {} as UserProfile;
+  user: UserProfile = {
+    profile: {
+      displayName: '',
+      icon: {
+        url: ''
+      }
+    }
+  } as UserProfile;
   mePosts: any;
   likedPosts: any;
   authUser: any;
