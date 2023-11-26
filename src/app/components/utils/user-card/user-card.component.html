@@ -23,10 +23,12 @@
         <div class="info-value">{{followingsCount}}</div>
       </div>
     </div>
-    <div class="container-follow">
-<!--      <button class="follow-button-follow">-->
-<!--        <i class="fas fa-user-plus"></i> Seguir-->
-<!--      </button>-->
+    <div *ngIf="hasData" class="container-follow">
+      <!--      <button class="follow-button-follow" *ngIf="!userAtual.following" (click)="onFollow(userAtual)">-->
+      <button class="follow-button-follow">
+        <i class="fas fa-user-plus"></i> Seguir
+      </button>
+      <!--      <button class="follow-button-follow" *ngIf="userAtual.following" (click)="unFollow(userAtual)">-->
       <button class="follow-button-follow">
         <i class="fas fa-user-check"></i> Seguindo
       </button>

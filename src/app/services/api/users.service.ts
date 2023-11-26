@@ -43,6 +43,12 @@ export class UserService {
     return this.http.get(environment.apiUrl + endpoint).pipe()
   }
 
+  getUserFollowing(): Observable<any> {
+    const endpoint = `users/me/following`
+
+    return this.http.get(environment.apiUrl + endpoint).pipe()
+  }
+
   findById(id: string): Observable<any> {
     const endpoint = `users/find/${id}`
     return this.http.get(environment.apiUrl + endpoint).pipe()

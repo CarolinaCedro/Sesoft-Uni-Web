@@ -2,10 +2,8 @@ import {Component} from '@angular/core';
 import {UserService} from 'src/app/services/api/users.service';
 import {PostNotificationService} from '../listeners/post-notification-service.service';
 import {getFromLocalStorage} from 'src/utils/local-storage.util';
-import {MatDialog} from "@angular/material/dialog";
-import {PicModalComponent} from "./pic-modal/pic-modal/pic-modal.component";
-import {ProfileImageService} from "../../services/profile-image.service";
 import {PostService} from "../../services/post.service";
+import {User} from "../../interfaces/user.models";
 
 export type UserProfile = {
   id: string;
@@ -17,6 +15,9 @@ export type UserProfile = {
   postsCount: number;
   followingsCount: number;
   followersCount: number;
+
+  following: boolean
+
   profile: {
     id: string;
     displayName: string;
@@ -47,10 +48,13 @@ export class ProfileComponent {
   likedPosts: any;
   authUser: any;
 
+  users: User[] = []
+
   constructor(
     private readonly service: UserService,
     private readonly postNotificationService: PostNotificationService,
-    private profileImageChanged : PostService
+    private profileImageChanged: PostService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +71,8 @@ export class ProfileComponent {
     this.getMe();
     this.getPosts();
     this.getLikedPosts();
+    this.getStatusOnBtn()
+
 
     this.loading = false;
   }
@@ -90,6 +96,31 @@ export class ProfileComponent {
       res => {
         this.user = res;
       });
+  }
+
+
+  getStatusOnBtn() {
+    this.userService.getAllUsers().subscribe(
+      res => {
+        console.log("todos os usuários", res);
+        const allUsers = res?.result;
+
+        this.userService.getFollowingUsers().subscribe(
+          followingUsers => {
+            console.log("usuários que estou seguindo", followingUsers?.result);
+
+            // Filtrando os usuários pra pegar só o que eu n sigo
+            this.users = allUsers.map((user: UserProfile) => {
+              const isFollowing = followingUsers?.result.some((followingUser: {
+                id: any;
+              }) => followingUser.id === user.id);
+              return new (user.id, user.email, user.profile, user.username, isFollowing);
+            });
+
+          }
+        );
+      }
+    );
   }
 
   private getPosts() {

@@ -62,6 +62,8 @@ export class ExplorerComponent implements OnInit {
   }
 
 
+
+
   updateStatus(user: User) {
     user.following = false;
   }

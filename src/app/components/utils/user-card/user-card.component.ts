@@ -4,6 +4,7 @@ import {UserService} from "../../../services/api/users.service";
 import {PicModalComponent} from "../../profile/pic-modal/pic-modal/pic-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {PostService} from "../../../services/post.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-user-card',
@@ -11,6 +12,7 @@ import {PostService} from "../../../services/post.service";
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
+
   @Input() profilePicture: string | undefined = '';
   @Input() displayName: string = '';
   @Input() followersCount: number = 0;
@@ -20,19 +22,47 @@ export class UserCardComponent implements OnInit {
   @Input() postsCount: number = 0;
   @Input() posts: any;
   @Input() likedPosts: any;
+  @Input() following: any;
+
+
 
 
   users: User[] = []
+
+
+
+
+  hasData: boolean = false
 
   followers: [] = []
 
   constructor(private userService: UserService,
               public readonly dialog: MatDialog,
-              public readonly service: PostService
+              public readonly service: PostService,
+              private route: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
+    console.log("eu sigo esse caralho",this.following)
+
+
+
+    const urlSegments = this.route.snapshot.url;
+    const userIndex = urlSegments.findIndex(segment => segment.path === 'user');
+
+
+    if (userIndex !== -1 && userIndex < urlSegments.length - 1) {
+      const dadoDepoisDoUser = urlSegments[userIndex + 1].path;
+      // Faça algo com o dado depois de 'user'
+      console.log('Dado depois de user:', dadoDepoisDoUser);
+      this.hasData = true
+    } else {
+      console.log("não tem dados")
+      this.hasData = false
+    }
+
+
     this.service.profileImageChanged.subscribe((imageUrl) => {
       this.profilePicture = imageUrl;
     });
@@ -41,6 +71,7 @@ export class UserCardComponent implements OnInit {
     this.getMyAllFollowers()
     this.getStatusOnBtn()
   }
+
 
   getMyAllFollowers() {
     this.userService.getFollowingUsers().subscribe(
@@ -76,6 +107,7 @@ export class UserCardComponent implements OnInit {
   }
 
   onFollow(user: User) {
+    console.log("aqui o user", user)
     this.userService.follow(user.id).subscribe(
       res => {
         user.following = true
@@ -92,16 +124,6 @@ export class UserCardComponent implements OnInit {
     );
   }
 
-  // getFollowers() {
-  //   this.userService.getFollowingUsers().subscribe()
-  // }
-  //
-  // isFollowing(): boolean {
-  //
-  // }
-  onUpdatePicProfile() {
-    console.log("pegando foto")
-  }
 
   openDialog() {
     this.dialog.open(PicModalComponent);
