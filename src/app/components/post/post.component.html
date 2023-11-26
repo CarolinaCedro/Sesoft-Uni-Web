@@ -53,7 +53,7 @@
   <div class="comments">
     <div *ngFor="let comment of post.replies" class="comment">
       <div class="comment-avatar">
-         <img [src]="comment?.user?.profile?.icon?.url" alt="Avatar">
+        <img [src]="comment.user.profile?.icon?.url" alt="Foto do perfil">
       </div>
       <div class="comment-content">
         <div class="comment-username">{{comment.user.profile.displayName}} <span>@{{comment.user.username}}</span></div>

@@ -62,7 +62,6 @@ export class PostCardComponent implements OnInit{
   }
 
 
-
   formatRelativeTime(datetimePost: string) {
     return formatRelativeTime(datetimePost);
   }

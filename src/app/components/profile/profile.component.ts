@@ -116,14 +116,16 @@ export class ProfileComponent {
           followingUsers => {
             console.log("usuários que estou seguindo", followingUsers?.result);
 
-            // Filtrando os usuários pra pegar só o que eu n sigo
-            this.users = allUsers.map((user: UserProfile) => {
+            // Filtrando os usuários para pegar só o que eu não sigo
+            this.users = allUsers.map((user: User) => {
               const isFollowing = followingUsers?.result.some((followingUser: {
                 id: any;
               }) => followingUser.id === user.id);
-              return new (user.id, user.email, user.profile, user.username, isFollowing);
+              return new User(user.id, user.email, user.profile, user.username, isFollowing);
             });
 
+            // Limitando a lista
+            // this.users = this.users.slice(0, 6);
           }
         );
       }

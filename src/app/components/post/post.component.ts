@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from 'src/app/services/post.service';
-import { ActivatedRoute } from '@angular/router';
-import { formatRelativeTime } from 'src/utils/datetime.util';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { UserService } from 'src/app/services/api/users.service';
+import {Component, OnInit} from '@angular/core';
+import {PostService} from 'src/app/services/post.service';
+import {ActivatedRoute} from '@angular/router';
+import {formatRelativeTime} from 'src/utils/datetime.util';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {UserService} from 'src/app/services/api/users.service';
 
 type User = {
   id: string;
@@ -45,13 +45,19 @@ export class PostComponent implements OnInit {
   protected post = {} as Post;
 
   user: any;
+  userResponse = {} as User
 
 
   form: FormGroup;
   protected loading = false;
   protected newComment: string = '';
   public postId: string = '';
-   picProfile: string = '';
+
+  picProfile: string = '';
+  picProfileComent: string = ''
+
+
+  userId: string = ""
 
 
   constructor(
@@ -64,21 +70,67 @@ export class PostComponent implements OnInit {
       content: ['']
     });
 
+
+
+  }
+
+
+
+  ngOnInit(): void {
+
+    this.getMe()
+
+    this.service.profileImageChanged.subscribe((imageUrl) => {
+      this.picProfile = imageUrl;
+    });
+
+
+
+    this.postId = this.route.snapshot.paramMap.get('id') ?? '';
+
+    if (this.postId) {
+      this.loading = true;
+      this.service.find(this.postId).subscribe(
+        res => {
+          console.log("teste lula", res)
+          console.log("res user", res.user)
+          this.post = res;
+          this.userId = res.user.id
+          console.log("res id", this.userId)
+          this.picProfile = res.user?.profile?.icon?.url
+          // this.picProfileComent = this.user?.profile?.icon?.url
+          this.loading = false;
+        },
+        error => {
+          console.error('Erro ao buscar post:', error);
+          this.loading = false;
+        }
+      );
+    } else {
+      console.error('ID não encontrado na URL.');
+    }
+
+    console.log("id", this.userId)
+
+  }
+
+  getMe(){
     this.userService.getMe().subscribe(
       res => {
         this.user = res;
-        this.picProfile = res?.profile?.icon?.url
+        this.userResponse = res
       });
   }
+
 
   addComment(): void {
     const formData = this.form.value;
 
-    console.log(this.user);
+    console.log("oque é isso", this.user);
 
     this.service.reply(this.postId, formData.content).subscribe(
       reponse => {
-        return this.post.replies.push({
+        this.post.replies.push({
           content: formData.content,
           id: reponse.id,
           createdAt: reponse.createdAt,
@@ -93,45 +145,23 @@ export class PostComponent implements OnInit {
             profile: {
               id: this.user.id,
               displayName: this.user.profile.displayName,
-              icon: undefined
+              icon: this.userResponse.profile.icon.url
             }
           },
           replies: [],
           userLiked: false,
           files: []
         });
+
+        // Move a atribuição para dentro do bloco subscribe
+        this.picProfileComent = this.userResponse.profile?.icon?.url;
       }
     );
 
     this.form.reset();
   }
-  ngOnInit(): void {
-
-    this.service.profileImageChanged.subscribe((imageUrl) => {
-      this.picProfile = imageUrl;
-    });
 
 
-    this.postId = this.route.snapshot.paramMap.get('id') ?? '';
-
-    if (this.postId) {
-      this.loading = true;
-      this.service.find(this.postId).subscribe(
-        res => {
-          this.post = res;
-          this.loading = false;
-        },
-        error => {
-          console.error('Erro ao buscar post:', error);
-          this.loading = false;
-        }
-      );
-    } else {
-      console.error('ID não encontrado na URL.');
-    }
-  }
-
-  commentOnPost() { }
 
   formatRelativeTime(datetimePost: string) {
     return formatRelativeTime(datetimePost);
@@ -169,7 +199,4 @@ export class PostComponent implements OnInit {
     });
   }
 
-  deletePost() {
-    console.log("teste")
-  }
 }

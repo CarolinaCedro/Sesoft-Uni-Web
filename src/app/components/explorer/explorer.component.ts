@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/api/users.service";
 import {User} from "../../interfaces/user.models";
 import {PostService} from "../../services/post.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-explorer',
@@ -13,7 +14,10 @@ export class ExplorerComponent implements OnInit {
   users: User[] = []
   picProfile: string = ""
 
-  constructor(private userService: UserService, private service: PostService) {
+  constructor(private userService: UserService,
+              private service: PostService,
+              private route: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -85,5 +89,8 @@ export class ExplorerComponent implements OnInit {
   }
 
 
+  onProfile(id: string) {
+    this.route.navigate(['/home/user', id]);
 
+  }
 }

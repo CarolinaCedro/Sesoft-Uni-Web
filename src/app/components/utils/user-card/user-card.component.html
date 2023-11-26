@@ -24,15 +24,14 @@
       </div>
     </div>
     <div *ngIf="hasData" class="container-follow">
-      <!--      <button class="follow-button-follow" *ngIf="!userAtual.following" (click)="onFollow(userAtual)">-->
-      <button class="follow-button-follow">
+      <button class="follow-button-follow" *ngIf="isNotFollowing" (click)="onFollow(users[0])">
         <i class="fas fa-user-plus"></i> Seguir
       </button>
-      <!--      <button class="follow-button-follow" *ngIf="userAtual.following" (click)="unFollow(userAtual)">-->
-      <button class="follow-button-follow">
+      <button class="follow-button-follow" *ngIf="following" (click)="unFollow(users[0])">
         <i class="fas fa-user-check"></i> Seguindo
       </button>
     </div>
+
   </div>
   <div class="tab-content">
     <mat-tab-group>

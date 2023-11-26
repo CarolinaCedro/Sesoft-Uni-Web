@@ -22,9 +22,13 @@ export class UserCardComponent implements OnInit {
   @Input() postsCount: number = 0;
   @Input() posts: any;
   @Input() likedPosts: any;
-  @Input() following: any;
 
 
+  isNotFollowing: boolean = false;
+  following: boolean = false;
+
+
+  idUser: string = ""
 
 
   users: User[] = []
@@ -44,9 +48,6 @@ export class UserCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("eu sigo esse caralho",this.following)
-
-
 
     const urlSegments = this.route.snapshot.url;
     const userIndex = urlSegments.findIndex(segment => segment.path === 'user');
@@ -54,13 +55,17 @@ export class UserCardComponent implements OnInit {
 
     if (userIndex !== -1 && userIndex < urlSegments.length - 1) {
       const dadoDepoisDoUser = urlSegments[userIndex + 1].path;
-      // Faça algo com o dado depois de 'user'
+      this.idUser = dadoDepoisDoUser
       console.log('Dado depois de user:', dadoDepoisDoUser);
       this.hasData = true
     } else {
       console.log("não tem dados")
       this.hasData = false
     }
+
+
+    console.log("aqui o id com index", this.idUser)
+    this.isFollowing(this.idUser)
 
 
     this.service.profileImageChanged.subscribe((imageUrl) => {
@@ -71,6 +76,22 @@ export class UserCardComponent implements OnInit {
     this.getMyAllFollowers()
     this.getStatusOnBtn()
   }
+
+  isFollowing(id: string): void {
+    this.userService.getUserFollowing().subscribe(
+      res => {
+        console.log("os users que sigo aqui", res);
+
+        // Verifica se o usuário com o ID fornecido está na lista de usuários seguidos
+        const isFollowing = res.result.some((user: { id: any }) => user.id === id);
+
+        // Define as variáveis para controlar a exibição dos botões
+        this.isNotFollowing = !isFollowing;
+        this.following = isFollowing;
+      }
+    );
+  }
+
 
 
   getMyAllFollowers() {
@@ -107,19 +128,19 @@ export class UserCardComponent implements OnInit {
   }
 
   onFollow(user: User) {
-    console.log("aqui o user", user)
     this.userService.follow(user.id).subscribe(
       res => {
-        user.following = true
+        user.following = true;
+        this.isFollowing(user.id); // Atualiza o estado após seguir
       }
     );
   }
 
-
   unFollow(user: User) {
     this.userService.unfollow(user.id).subscribe(
       res => {
-        user.following = false
+        user.following = false;
+        this.isFollowing(user.id); // Atualiza o estado após deixar de seguir
       }
     );
   }

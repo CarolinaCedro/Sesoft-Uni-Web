@@ -37,6 +37,14 @@ export class UserService {
     return this.http.get(environment.apiUrl + endpoint).pipe()
   }
 
+  getPostByUserId(userId: string): Observable<any> {
+    console.log("aqui no service chegando o url", userId)
+    const endpoint = `users/find/${userId}`
+
+    return this.http.get(environment.apiUrl + endpoint).pipe()
+  }
+
+
   getUserPosts(userId: string): Observable<any> {
     const endpoint = `users/${userId}/posts`
 
@@ -83,7 +91,6 @@ export class UserService {
       tap(res => console.log("Resposta do unfollow:", res)) // Adicione este log
     );
   }
-
 
   getFollowingUsers() {
     const endpoint: string = 'users/me/following'
