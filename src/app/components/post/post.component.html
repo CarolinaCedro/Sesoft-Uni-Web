@@ -25,7 +25,7 @@
     <div class="actions-container">
       <div class="action">
         <i [ngClass]="post.userLiked ? 'fa-solid fa-heart post-liked' : 'fa-solid fa-heart'"
-          (click)="handleLike(post.id)"></i>
+          (click)="handleLike()"></i>
         <small>{{post.likesCount}}</small>
       </div>
       <div class="action">

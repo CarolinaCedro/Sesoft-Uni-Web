@@ -54,11 +54,9 @@ export class PostComponent implements OnInit {
   public postId: string = '';
 
   picProfile: string = '';
-  picProfileComent: string = ''
 
 
   userId: string = ""
-
 
   constructor(
     private readonly service: PostService,
@@ -69,22 +67,14 @@ export class PostComponent implements OnInit {
     this.form = this.formBuilder.group({
       content: ['']
     });
-
-
-
   }
 
-
-
   ngOnInit(): void {
-
     this.getMe()
 
     this.service.profileImageChanged.subscribe((imageUrl) => {
       this.picProfile = imageUrl;
     });
-
-
 
     this.postId = this.route.snapshot.paramMap.get('id') ?? '';
 
@@ -92,13 +82,9 @@ export class PostComponent implements OnInit {
       this.loading = true;
       this.service.find(this.postId).subscribe(
         res => {
-          console.log("teste lula", res)
-          console.log("res user", res.user)
           this.post = res;
           this.userId = res.user.id
-          console.log("res id", this.userId)
           this.picProfile = res.user?.profile?.icon?.url
-          // this.picProfileComent = this.user?.profile?.icon?.url
           this.loading = false;
         },
         error => {
@@ -109,9 +95,6 @@ export class PostComponent implements OnInit {
     } else {
       console.error('ID não encontrado na URL.');
     }
-
-    console.log("id", this.userId)
-
   }
 
   getMe(){
@@ -122,11 +105,8 @@ export class PostComponent implements OnInit {
       });
   }
 
-
   addComment(): void {
     const formData = this.form.value;
-
-    console.log("oque é isso", this.user);
 
     this.service.reply(this.postId, formData.content).subscribe(
       reponse => {
@@ -145,16 +125,15 @@ export class PostComponent implements OnInit {
             profile: {
               id: this.user.id,
               displayName: this.user.profile.displayName,
-              icon: this.userResponse.profile.icon.url
+              icon: {
+                url: this.userResponse.profile.icon.url
+              }
             }
           },
           replies: [],
           userLiked: false,
           files: []
         });
-
-        // Move a atribuição para dentro do bloco subscribe
-        this.picProfileComent = this.userResponse.profile?.icon?.url;
       }
     );
 
@@ -167,7 +146,7 @@ export class PostComponent implements OnInit {
     return formatRelativeTime(datetimePost);
   }
 
-  handleLike(postId: string): void {
+  handleLike(): void {
     try {
       const postLiked = this.post;
 
