@@ -4,9 +4,7 @@
   <div class="publicacao">
     <div class="user-info">
       <div class="user-avatar">
-<!--        <img *ngIf="post.user && post.user.profile && post.user.profile.icon && post.user.profile.icon.url"-->
-        <img
-          [src]="picProfile" alt="{{post.user.username}}">
+        <img *ngIf="picProfile" [src]="picProfile" alt="{{post.user.username}}">
       </div>
       <div class="user-details">
         <div class="user-display-name">{{post.user.profile.displayName}}</div>
@@ -24,8 +22,7 @@
     </div>
     <div class="actions-container">
       <div class="action">
-        <i [ngClass]="post.userLiked ? 'fa-solid fa-heart post-liked' : 'fa-solid fa-heart'"
-          (click)="handleLike()"></i>
+        <i [ngClass]="post.userLiked ? 'fa-solid fa-heart post-liked' : 'fa-solid fa-heart'" (click)="handleLike()"></i>
         <small>{{post.likesCount}}</small>
       </div>
       <div class="action">

@@ -25,7 +25,7 @@ export interface Files {
 export class PostCardComponent implements OnInit{
   @Input() id: string = '';
   @Input() content: string = '';
-  @Input() profilePicture: string = '';
+  @Input() profilePicture: string | undefined = '';
   @Input() createdAt: string = '';
   @Input() updatedAt: string = '';
   @Input() userId: string = '';
